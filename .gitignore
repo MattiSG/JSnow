@@ -1,11 +1,5 @@
 .DS_Store
-*.xcodeproj
-build
-bin
-jars
-dist
 *.pages
-*.exe
 *~
 *.bak
-
+node_modules/
