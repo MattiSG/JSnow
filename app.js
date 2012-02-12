@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 
+<<<<<<< HEAD
 var mongoose      = require('mongoose'),
     Schema        = mongoose.Schema,
     mongooseAuth  = require('mongoose-auth'),
@@ -71,14 +72,18 @@ app.configure(function(){
   app.use(mongooseAuth.middleware());
   app.use(express.static(__dirname + "/public"));
   app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+	app.set('view options', {
+		open: '<<',
+		close: '>>'
+	});
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+	app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+	app.use(express.errorHandler()); 
 });
 
 // Routes
