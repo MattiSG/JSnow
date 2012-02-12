@@ -34,7 +34,17 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', routes.index);
+app.get('/', routes.login);
+
+//users'
+app.get('/login', routes.login);
+app.get('/register', routes.register);
+
+//hills'
+app.get('/hills', routes.hills);
+app.get('/hills/:id', routes.hills);
+app.get('/hills/update/:id', routes.hills_update);
+
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
