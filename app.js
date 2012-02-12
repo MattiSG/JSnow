@@ -1,9 +1,5 @@
 		
-/**
- * Module dependencies.
- */
-
-<<<<<<< HEAD
+// Module dependencies
 var mongoose      = require('mongoose'),
     Schema        = mongoose.Schema,
     mongooseAuth  = require('mongoose-auth'),
@@ -11,56 +7,17 @@ var mongoose      = require('mongoose'),
     Promise 	    = everyauth.Promise,
     express       = require('express');
 
-// Mongoose setup
-var UserSchema = new Schema({
-  name:String,
-  lastname:String
-});
-
-UserSchema.plugin(mongooseAuth, {
-    everymodule: {
-      everyauth: {
-        User: function () {
-          return User;
-        }
-      }
-    },
-    password: {
-      loginWith: 'email', //loginWith: 'phone' also possible
-      
-      extraParams:{
-        name:{
-          first:String,
-          last:String
-        }
-      },
-
-      everyauth: {
-            getLoginPath: '/login'
-          , postLoginPath: '/login'
-          , loginView: 'login.ejs'
-          , getRegisterPath: '/register'
-          , postRegisterPath: '/register'
-          , registerView: 'register.ejs'
-          , loginSuccessRedirect: '/'
-          , registerSuccessRedirect: '/'
-        }
-    }
-});
-
-mongoose.model('User', UserSchema);
-
-mongoose.connect('mongodb://localhost/JSnow');
-
+// Models
+require('./models/user');
 User = mongoose.model('User');
 
+// DB Connect
+mongoose.connect('mongodb://localhost/JSnow');
+
+// App
 var app = module.exports = express.createServer();
 
-// STEP 3: Add in Dynamic View Helpers (only if you are using express)
-mongooseAuth.helpExpress(app);
-
 // Configuration
-
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
@@ -93,13 +50,14 @@ app.get('/', function (req, res) {
   res.render('home');
 });
 
-app.get('/special', function(req,res) {
-  var haha = req.url;
-  res.render('specialContent', {val: haha});
+
+app.get('/index', function(req,res) {
+	res.render('index', require('./controllers/hill'))
 });
 
-// start
+// Start
 
+everyauth.debug = true;
 mongooseAuth.helpExpress(app);
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

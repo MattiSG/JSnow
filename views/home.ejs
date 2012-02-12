@@ -1,8 +1,4 @@
-<header>
-	<h1>JSnow!</h1>
-</header>
-
-<% if (!everyauth.loggedIn) { %>
+<< if (!everyauth.loggedIn) { >>
 
 <h2>Not Authenticated</h2>
 <p>
@@ -11,13 +7,13 @@
   <a href='/login'>Login</a>
 </p>
 
-<% } else { %>
+<< } else { >>
 
 <h2>Authenticated</h2>
-<p>Logged in with <%= user.id %> aka <%= everyauth.user.id %>
+<p>Logged in with <<= user.id >> aka <<= everyauth.user.id >>
 
 <a href='/logout'>Logout</a>
 
-<% } %>
+<< } >>
 <footer>
 </footer>
