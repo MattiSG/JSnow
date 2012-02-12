@@ -1,0 +1,27 @@
+
+<h2>Update <<= hill.name >></h2>
+</p>
+  <form action="/hills/update" method="post">
+    <label for="name">Hill name</label>
+    <input type="text" name="name" value="<<= hill.name>>"/>
+    <br />
+    <label for="runs.green.total">Number of green runs</label>
+    <input type="text" name="runs.green.total" value="<<= hill.runs.green.total>>" />
+    <br />
+    <label for="runs.blue.total">Number of blue runs</label>
+    <input type="text" name="runs.blue.total" value="<<= hill.runs.blue.total>>" />
+    <br />
+    <label for="runs.red.total">Number of red runs</label>
+    <input type="text" name="runs.red.total" value="<<= hill.runs.red.total>>" />
+    <br />
+    <label for="runs.black.total">Number of black runs</label>
+    <input type="text" name="runs.black.total" value="<<= hill.runs.black.total>>" />
+    <br />
+    <label for="lifts.total">Total lifts</label>
+    <input type="text" name="lifts.total" value="<<= hill.lifts.total>>" />
+    <br />
+    <input type="submit" value="Update hill" />
+  </form>
+  
+  <a href='/'>Go back home</a>
+</p>

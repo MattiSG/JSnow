@@ -36,14 +36,12 @@ app.configure('production', function(){
 
 app.get('/', routes.login);
 
-//users'
-app.get('/login', routes.login);
-app.get('/register', routes.register);
-
 //hills'
-app.get('/hills', routes.hills);
-app.get('/hills/:id', routes.hills);
+app.get('/hills/new', routes.hills_new); // pb if we put this line after /hills/:id
+app.post('/hills/new', routes.hills_create); // same route as app.get ?
 app.get('/hills/update/:id', routes.hills_update);
+app.get('/hills/:id', routes.hills);
+app.get('/hills', routes.hills);
 
 
 app.listen(3000);
