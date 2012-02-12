@@ -1,0 +1,22 @@
+<header>
+	<h1>JSnow! Login</h1>
+</header>
+
+<% if (!everyauth.loggedIn) { %>
+</p>
+  <form action="/login" method="post">
+    <label for="everyauth.password.loginFormFieldName">Login</label>
+    <input name="everyauth.password.loginFormFieldName" type="text" />
+    <br />
+    <label for="everyauth.password.passwordFormFieldName">Password</label>
+    <input name="everyauth.password.passwordFormFieldName" type="password" />
+    <br />
+    <input type="submit" value="Log me in" />
+  </form>
+  
+<a href='/'>Go back home</a>
+</p>
+<% } // else find a way to redirect %>
+
+<footer>
+</footer>

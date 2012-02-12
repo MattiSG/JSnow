@@ -1,0 +1,29 @@
+<header>
+	<h1>JSnow! Register</h1>
+</header>
+
+<% if (!everyauth.loggedIn) {%>
+<h2>Register</h2>
+</p>
+  <form action="/register" method="post">
+    <label for="everyauth.password.loginFormFieldName">Login</label>
+    <input type="text" name="everyauth.password.loginFormFieldName" />
+    <br />
+    <label for="everyauth.password.passwordFormFieldName">Password</label>
+    <input type="password" name="everyauth.password.passwordFormFieldName" />
+    <br />
+    <label for="name.first">First name</label>
+    <input type="text" name="name.first" />
+    <br />
+    <label for="name.last">Last name</label>
+    <input type="text" name="name.first" />
+    <br />
+    <input type="submit" value="Create account" />
+  </form>
+  
+<a href='/'>Go back home</a>
+</p>
+<% } // else find a way to redirect %>
+
+<footer>
+</footer>

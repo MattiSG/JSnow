@@ -1,0 +1,23 @@
+<header>
+	<h1>JSnow!</h1>
+</header>
+
+<% if (!everyauth.loggedIn) { %>
+
+<h2>Not Authenticated</h2>
+<p>
+  <a href='/register'>Register</a>
+  <br>
+  <a href='/login'>Login</a>
+</p>
+
+<% } else { %>
+
+<h2>Authenticated</h2>
+<p>Logged in with <%= user.id %> aka <%= everyauth.user.id %>
+
+<a href='/logout'>Logout</a>
+
+<% } %>
+<footer>
+</footer>
