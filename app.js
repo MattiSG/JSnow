@@ -39,8 +39,8 @@ app.get('/', routes.login);
 //hills'
 app.get('/hills/new', routes.hills_new); // pb if we put this line after /hills/:id
 app.post('/hills/new', routes.hills_create); // same route as app.get ?
-app.get('/hills/update/:id', routes.hills_update);
-app.get('/hills/:id', routes.hills);
+app.get('/hills/update/:hillName', routes.hills_update);
+app.get('/hills/:hillName', routes.hills);
 app.get('/hills', routes.hills);
 
 

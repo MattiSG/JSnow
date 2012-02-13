@@ -14,14 +14,18 @@ exports.login = function(req, res) {
 
 // hills
 
+var hillsController = require('./controllers/hill');
+
 exports.hills = function(req, res) {
-  if (req.params.id) {
-    res.render('hills/view', {
-      hills: [require('./controllers/hill').hills[parseInt(req.params.id)]] // -__-...
+	if (req.params.hillName) {
+		res.render('hills/view', {
+			hills: [hillsController.hill(req.params.hillName)]
     });
-  }
-	else
-	  res.render('hills/view', require('./controllers/hill'));
+	} else {
+		res.render('hills/view', {
+			hills: hillsController.hills()
+		});
+	}
 };
 
 exports.hills_new = function(req, res) {
@@ -33,9 +37,9 @@ exports.hills_create = function(req, res) {
 };
 
 exports.hills_update = function(req, res) {
-  if (req.params.id) {
+  if (req.params.hillName) {
     res.render('hills/update', {
-      hill: require('./controllers/hill').hills[parseInt(req.params.id)]
+			hill: hillsController.hill(req.params.hillName)
     });
   }
 };
