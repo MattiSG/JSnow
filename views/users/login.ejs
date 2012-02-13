@@ -1,5 +1,7 @@
 << if (!everyauth.loggedIn) { >>
+<h2>Se connecter</h2>
 	<< if  ('undefined' !== typeof errors && errors.length) {>>
+	<p>Erreurs (en anglais, parce que ça fait tellement plus dramatique) :</p>
 	<ul>
 	  << for (var i=0; i<errors.length; i++) {>>
 	  <li><<= errors[i] >></li>
@@ -8,16 +10,16 @@
 </ul>
 </p>
   <form action="/users/login" method="post">
-    <label for="<<= everyauth.password.loginFormFieldName >>">Login</label>
+    <label for="<<= everyauth.password.loginFormFieldName >>">Identifiant</label>
     <input name="<<=everyauth.password.loginFormFieldName >>" type="text" />
     <br />
-    <label for="<<= everyauth.password.passwordFormFieldName >>">Password</label>
+    <label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label>
     <input name="<<= everyauth.password.passwordFormFieldName >>" type="password" />
     <br />
-    <input type="submit" value="Log me in" />
+    <input type="submit" value="Se connecter" />
   </form>
   
-<a href='/'>Go back home</a>
+<a href='/'>Retour à l'accueil</a>
 </p>
 << } // else find a way to redirect >>
 

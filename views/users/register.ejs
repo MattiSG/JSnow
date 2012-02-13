@@ -1,6 +1,7 @@
 << if (!everyauth.loggedIn) {>>
-<h2>Register</h2>
+<h2>S'enregistrer</h2>
 	<< if  ('undefined' !== typeof errors && errors.length) {>>
+	<p>Erreurs (en anglais, parce que ça fait tellement plus dramatique) :</p>
 	<ul>
 	  << for (var i=0; i<errors.length; i++) {>>
 	  <li><<= errors[i] >></li>
@@ -9,22 +10,22 @@
 	</ul>
 </p>
   <form action="/users/register" method="post">
-    <label for="<<= everyauth.password.loginFormFieldName >>">Login</label>
+    <label for="<<= everyauth.password.loginFormFieldName >>">Identifiant</label>
     <input type="text" name="<<= everyauth.password.loginFormFieldName >>" />
     <br />
-    <label for="<<= everyauth.password.passwordFormFieldName >>">Password</label>
+    <label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label>
     <input type="password" name="<<= everyauth.password.passwordFormFieldName >>" />
     <br />
-    <label for="name.first">First name</label>
+    <label for="name.first">Prénom</label>
     <input type="text" name="name.first" />
     <br />
-    <label for="name.last">Last name</label>
+    <label for="name.last">Nom</label>
     <input type="text" name="name.last" />
     <br />
-    <input type="submit" value="Create account" />
+    <input type="submit" value="Créer un compte" />
   </form>
   
-<a href='/'>Go back home</a>
+<a href='/'>Retour à l'accueil</a>
 </p>
 << } // else find a way to redirect >>
 

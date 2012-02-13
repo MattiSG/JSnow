@@ -22,12 +22,12 @@
 		<footer>
 		  << if (everyauth.loggedIn) {>>
 		  <p>
-				You are logged as <<= user.name.first >> <<= user.name.last >>.
-				<a href='/logout'>Logout</a>.
+				Vous êtes connecté en tant que <<= user.name.first >> <<= user.name.last >>.
+				<a href='/logout'>Se déconnecter</a>.
 			</p>
 		  <<} else {>>
 			<p>
-				You are not logged in... So <a href='/users/login'>login</a> !
+				Vous n'êtes pas connecté... <a href='/users/login'>allez-y</a> !
 			</p>
 			<<}>>
 

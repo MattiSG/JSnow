@@ -1,16 +1,21 @@
 << if (!everyauth.loggedIn) { >>
 
-<h2>Not Authenticated</h2>
+<h2>Bienvenue !</h2>
 <p>
-  <a href='/users/register'>Register</a>
+  <a href='/users/register'>S'enregistrer</a>
   <br>
-  <a href='/users/login'>Login</a>
+  <a href='/users/login'>Connexion</a>
 </p>
 
 << } else { >>
 
-<h2>Authenticated</h2>
-
+<h2>Hey !</h2>
+<p>
+	Vous pouvez jeter un oeil aux
+  <a href='/users/register'>stations</a> (todo)
+  et partager votre point de vue !
+  <br>
+</p>
 
 << } >>
 <footer>
