@@ -5,6 +5,5 @@
   , "dependencies": {
       "express": "2.5.5"
     , "ejs": ">= 0.0.1"
-    , "stylus": ">= 0.0.1"
   }
 }

@@ -1,8 +1,125 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Fonts */
+@font-face {
+	font-family: "fontName";
+	src: url("path/to/font.ttf");
 }
 
-a {
-  color: #00B7FF;
+
+// Alphabetical sort of each category (TAG, ID, CLASS)
+/* I like this way 
+{
+  // background / font style
+  // specific stuff
+  // padding/margin
+  // width/height 
+}
+*/
+
+
+/****** TAG ******/
+
+a
+{
+  color: lightblue;
+}
+
+a:hover
+{
+  color: lightgray;
+  text-decoration: none;
+}
+
+body
+{
+  font: 14px "Lucida Grande", Helvetica, Arial, fontName, sans-serif;
+  margin: 0;
+  padding: 2em;
+  width: 100%;
+}
+
+ol
+{
+  list-style-type: asterisks;
+}
+
+/****** ID ******/
+
+#banner
+{
+  font-size: 50px;
+  margin: 0;
+}
+
+/****** CLASS ******/
+
+.black
+{
+  color: #000;
+}
+
+.blue
+{
+  color: #add8e6;
+}
+
+.comment
+{
+  color: black;
+}
+
+.comment .content {
+  color: gray;
+  font-style: oblique;
+}
+
+.comment .mark
+{
+  
+}
+
+.info_title
+{
+  text-decoration: underline;
+}
+
+.green
+{
+  color: lightgreen;
+}
+
+.hill
+{
+  text-decoration: none;
+}
+
+.hill_name
+{
+  border-bottom: 0.2em solid black;
+  padding-bottom: 0.2em;
+  width: 50%;
+}
+
+.mark
+{
+  font-weight: bold;
+}
+
+.red
+{
+  color: red;
+}
+
+.runs
+{
+  color: black;
+}
+
+.snow_type
+{
+  font-weight: bold;
+}
+
+.user_name
+{
+  
 }

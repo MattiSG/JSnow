@@ -1,12 +1,12 @@
 <article class="hill">
-	<h2><<= hill.name >></h2>
+	<h2 class="hill_name"><<= hill.name >></h2>
 	<p>
 	  <span class="mark"><<= hill.mark >></span> -
 	  <span class="snow_type"><<= hill.snowType >></span>. 
 	  Last update on <<= hill.lastUpdate >> (need to parse)
 	</p>
 	
-	<h3>General info</h3>
+	<h3 class="info_title">General info</h3>
 	<p>
 	  Snow cover (top/bottom) : <<= hill.snowCover.top >> / <<= hill.snowCover.bottom >>
 	</p>
@@ -14,7 +14,7 @@
 	  Lifts (opened/total) : <<= hill.lifts.open >> / <<= hill.lifts.total >>
 	</p>
 	
-	<h3>Open runs</h3>
+	<h3 class="info_title">Open runs</h3>
 	<ol class="runs">
 		<li class="green"><<= hill.runs.green.open >> / <<= hill.runs.green.total >></li>
 		<li class="blue"><<= hill.runs.blue.open >> / <<= hill.runs.blue.total >></li>
@@ -22,15 +22,15 @@
 		<li class="black"><<= hill.runs.black.open >> / <<= hill.runs.black.total >></li>
 	</ol>
 	
-	<h3>What they say :</h3>
+	<h3 class="info_title">What they say :</h3>
 	<<for (var i in hill.comments) {>> <!-- Y'a pas plus sexy ? -->
   <article class="comment">
     <p>
-      userID: <span class="userName"><<= hill.comments[i].userID >></span> ->
+      userID: <span class="user_name"><<= hill.comments[i].userID >></span> ->
       <span class="mark"><<= hill.comments[i].mark>></span>
     </p>
     <<if (hill.comments[i].content) { >>
-    <p class="comment_content"><<= hill.comments[i].content >></p>
+    <p class="content"><<= hill.comments[i].content >></p>
     << } >>
   </article>
 	<<}>>
