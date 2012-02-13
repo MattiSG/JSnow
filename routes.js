@@ -1,4 +1,4 @@
-var hillsController = require('./controllers/hill');
+var hillsController = require('./controllers/hillController');
 
 exports.get = {
 	'/': function(req, res) {
