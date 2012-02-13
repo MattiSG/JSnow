@@ -1,18 +1,17 @@
-var mocks = require('../models/hillMockup.js');
+var data = require('../models/hillMockup.js');
 
-/**
-*@returns	an array containing data for all hills
-*/
-exports.hills = function getHills() {
-	return [
-		mocks.auron,
-		mocks.isola
-	];
+exports.update = function(req, res) {
+	res.render('hills/update', { hill: data[req.params.hillName] });
 }
 
-/**
-*@return	data for the given hill, or undefined if no matching hill was found
-*/
-exports.hill = function getHill(whichOne) {
-	return mocks[whichOne];
+exports.viewAll = function(req, res) {
+	res.render('hills/view', { hills: Object.values(data) });
+}
+
+exports.viewHill = function(req, res) {
+	res.render('hills/view', { hills: [ data[req.params.hillName] ] });
+}
+
+exports.create = function(req, res) {
+	//TODO
 }
