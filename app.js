@@ -4,7 +4,6 @@
  */
 
 var express = require('express'),
-	routes = require('./routes'),
 	mootools = require('./lib/mootools-core');
 
 var app = module.exports = express.createServer();
@@ -33,11 +32,7 @@ app.configure('production', function(){
 	app.use(express.errorHandler()); 
 });
 
-Object.each(routes, function(mappings, method) {
-	Object.each(mappings, function(handler, pattern) {
-		app[method](pattern, handler);
-	});
-});
+require('./lib/easy-routes')(app, __dirname + '/routes');
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

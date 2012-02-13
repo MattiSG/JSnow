@@ -1,15 +1,9 @@
 var hillsController = require('./controllers/hillController');
 
 exports.get = {
-	'/': function(req, res) {
-		// if user is not already logged in
-		res.render('users/login');
-		// else res.render('hills/view', require('./controllers/hill'));
-	},
+	'/': 'users/login',
 	
-	'/hills/new': function(req, res) {
-		res.render('hills/new');
-	},
+	'/hills/new': 'hills/new',
 	
 	'/hills/update/:hillName': function(req, res) {
 		if (req.params.hillName) {
@@ -29,7 +23,5 @@ exports.get = {
 }
 
 exports.post = {
-	'/hills/new': function(req, res) {
-		res.render('hills/new');
-	}
+	'/hills/new': 'hills/new'
 }
