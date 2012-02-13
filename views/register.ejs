@@ -1,18 +1,25 @@
 << if (!everyauth.loggedIn) {>>
 <h2>Register</h2>
+	<< if  ('undefined' !== typeof errors && errors.length) {>>
+	<ul>
+	  << for (var i=0; i<errors.length; i++) {>>
+	  <li><<= errors[i] >></li>
+	  <<}>>
+	<<}>>
+	</ul>
 </p>
   <form action="/register" method="post">
-    <label for="everyauth.password.loginFormFieldName">Login</label>
-    <input type="text" name="everyauth.password.loginFormFieldName" />
+    <label for="<<= everyauth.password.loginFormFieldName >>">Login</label>
+    <input type="text" name="<<= everyauth.password.loginFormFieldName >>" />
     <br />
-    <label for="everyauth.password.passwordFormFieldName">Password</label>
-    <input type="password" name="everyauth.password.passwordFormFieldName" />
+    <label for="<<= everyauth.password.passwordFormFieldName >>">Password</label>
+    <input type="password" name="<<= everyauth.password.passwordFormFieldName >>" />
     <br />
     <label for="name.first">First name</label>
     <input type="text" name="name.first" />
     <br />
     <label for="name.last">Last name</label>
-    <input type="text" name="name.first" />
+    <input type="text" name="name.last" />
     <br />
     <input type="submit" value="Create account" />
   </form>
