@@ -1,0 +1,25 @@
+<< if (!everyauth.loggedIn) { >>
+	<< if  ('undefined' !== typeof errors && errors.length) {>>
+	<ul>
+	  << for (var i=0; i<errors.length; i++) {>>
+	  <li><<= errors[i] >></li>
+	  <<}>>
+	<<}>>
+</ul>
+</p>
+  <form action="/users/login" method="post">
+    <label for="<<= everyauth.password.loginFormFieldName >>">Login</label>
+    <input name="<<=everyauth.password.loginFormFieldName >>" type="text" />
+    <br />
+    <label for="<<= everyauth.password.passwordFormFieldName >>">Password</label>
+    <input name="<<= everyauth.password.passwordFormFieldName >>" type="password" />
+    <br />
+    <input type="submit" value="Log me in" />
+  </form>
+  
+<a href='/'>Go back home</a>
+</p>
+<< } // else find a way to redirect >>
+
+<footer>
+</footer>

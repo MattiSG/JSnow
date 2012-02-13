@@ -26,12 +26,12 @@ UserSchema.plugin(mongooseAuth, {
       },
 
       everyauth: {
-            getLoginPath: '/login'
-          , postLoginPath: '/login'
-          , loginView: 'login.ejs'
-          , getRegisterPath: '/register'
-          , postRegisterPath: '/register'
-          , registerView: 'register.ejs'
+            getLoginPath: '/users/login'
+          , postLoginPath: '/users/login'
+          , loginView: 'users/login.ejs'
+          , getRegisterPath: '/users/register'
+          , postRegisterPath: '/users/register'
+          , registerView: 'users/register.ejs'
           , loginSuccessRedirect: '/'
           , registerSuccessRedirect: '/'
         }

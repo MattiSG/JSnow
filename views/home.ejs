@@ -2,17 +2,15 @@
 
 <h2>Not Authenticated</h2>
 <p>
-  <a href='/register'>Register</a>
+  <a href='/users/register'>Register</a>
   <br>
-  <a href='/login'>Login</a>
+  <a href='/users/login'>Login</a>
 </p>
 
 << } else { >>
 
 <h2>Authenticated</h2>
-<p>Logged in with <<= user.id >> aka <<= everyauth.user.id >>
 
-<a href='/logout'>Logout</a>
 
 << } >>
 <footer>

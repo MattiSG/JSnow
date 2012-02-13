@@ -20,6 +20,17 @@
 		</div>
 		
 		<footer>
+		  << if (everyauth.loggedIn) {>>
+		  <p>
+				You are logged as <<= user.name.first >> <<= user.name.last >>.
+				<a href='/logout'>Logout</a>.
+			</p>
+		  <<} else {>>
+			<p>
+				You are not logged in... So <a href='/users/login'>login</a> !
+			</p>
+			<<}>>
+
 		</footer>
 
 		
