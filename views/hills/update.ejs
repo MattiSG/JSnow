@@ -1,26 +1,27 @@
 
-<h2>Update <<= hill.name >></h2>
+<h2>Mettre à jour <<= hill.name >></h2>
+
 </p>
-  <form action="/hills/update" method="post">
-    <label for="name">Hill name</label>
+  <form action="/hills/update/<<= hill.name>>" method="post">
+    <label for="name">Nom</label>
     <input type="text" name="name" value="<<= hill.name>>"/>
     <br />
-    <label for="runs.green.total">Number of green runs</label>
-    <input type="text" name="runs.green.total" value="<<= hill.runs.green.total>>" />
+    <label for="runs.green.total">Nombre de pistes vertes</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.green.total >>" name="runs.green.total" />
     <br />
-    <label for="runs.blue.total">Number of blue runs</label>
-    <input type="text" name="runs.blue.total" value="<<= hill.runs.blue.total>>" />
+    <label for="runs.blue.total">Nombre de pistes bleues</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.blue.total >>" name="runs.blue.total" />
     <br />
-    <label for="runs.red.total">Number of red runs</label>
-    <input type="text" name="runs.red.total" value="<<= hill.runs.red.total>>" />
+    <label for="runs.red.total">Nombre de pistes rouges</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.red.total >>" name="runs.red.total" />
     <br />
-    <label for="runs.black.total">Number of black runs</label>
-    <input type="text" name="runs.black.total" value="<<= hill.runs.black.total>>" />
+    <label for="runs.black.total">Nombre de pistes noires</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.black.total >>" name="runs.black.total" />
     <br />
-    <label for="lifts.total">Total lifts</label>
-    <input type="text" name="lifts.total" value="<<= hill.lifts.total>>" />
+    <label for="lifts.total">Nombre de remonte-piste</label>
+    <input type="number" step="1" min="0" value="<<= hill.lifts.total >>" name="lifts.total" />
     <br />
-    <input type="submit" value="Update hill" />
+    <input type="submit" value="Mettre à jour" />
   </form>
   
   <a href='/'>Go back home</a>

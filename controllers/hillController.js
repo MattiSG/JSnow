@@ -40,6 +40,21 @@ function unflat(from){
 }
 
 exports.update = function(req, res) {
+	if (req.originalMethod == "POST") {
+		var hill = data[req.params.hillName];
+		var from = unflat(req.body);
+		
+		Object.each(from, function(val, key){
+			hill[key] = val;
+		});
+		
+		hill.save(function(err) { 
+			if (!err)
+				res.render('hills/view', { hills: Object.values(data) });
+			else
+				res.render('hills/update/'+req.params.hillName);
+		});
+	}
 	res.render('hills/update', { hill: data[req.params.hillName] });
 }
 
