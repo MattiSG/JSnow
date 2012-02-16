@@ -4,9 +4,18 @@
  */
 
 var express = require('express'),
-	mootools = require('./lib/mootools-core');
+	mootools = require('./lib/mootools-core'),
+	mongoose = require('mongoose');
 
 var app = module.exports = express.createServer();
+
+// require
+require('./models/hill');
+
+// db
+mongoose.connect('mongodb://localhost/JSnow');
+
+//require('./models/populate')();
 
 // Configuration
 
