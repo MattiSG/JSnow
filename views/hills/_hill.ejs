@@ -22,16 +22,14 @@
 		<li class="black"><<= hill.runs.black.open >> / <<= hill.runs.black.total >></li>
 	</ol>
 	
-	<h3 class="info_title">What they say :</h3>
-	<<for (var i in hill.comments) {>> <!-- Y'a pas plus sexy ? -->
+	<h3 class="info_title">What they say :</h3>	
+	<<hill.comments.each(function(com) {>>
 	<article class="comment">
 		<p>
-			userID: <span class="user_name"><<= hill.comments[i].userID >></span> ->
-			<span class="mark"><<= hill.comments[i].mark>></span>
+			userID: <span class="user_name"><<= com.userID >></span> ->
+			<span class="mark"><<= com.mark>></span>
 		</p>
-		<<if (hill.comments[i].content) { >>
-		<p class="content"><<= hill.comments[i].content >></p>
-		<< } >>
+		<p class="content"><<= com.content >></p>
 	</article>
-	<<}>>
+	<<});>>
 </article>
