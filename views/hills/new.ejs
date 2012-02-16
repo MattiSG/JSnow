@@ -3,22 +3,22 @@
 </p>
   <form action="/hills/new" method="post">
     <label for="name">Hill name</label>
-    <input type="text" name="name" />
+    <input type="text" name="name" required />
     <br />
     <label for="greenRunsTotal">Number of green runs</label>
-    <input type="text" name="greenRunsTotal" />
+    <input type="number" step="1" min="0" value="0" name="greenRunsTotal" />
     <br />
     <label for="blueRunsTotal">Number of blue runs</label>
-    <input type="text" name="blueRunsTotal" />
+    <input type="number" step="1" min="0" value="0" name="blueRunsTotal" />
     <br />
     <label for="redRunsTotal">Number of red runs</label>
-    <input type="text" name="redRunsTotal" />
+    <input type="number" step="1" min="0" value="0" name="redRunsTotal" />
     <br />
     <label for="blackRunsTotal">Number of black runs</label>
-    <input type="text" name="blackRunsTotal" />
+    <input type="number" step="1" min="0" value="0" name="blackRunsTotal" />
     <br />
     <label for="totalLifts">Total lifts</label>
-    <input type="text" name="totalLifts" />
+    <input type="number" step="1" min="0" value="0" name="totalLifts" />
     <br />
     <input type="submit" value="Create hill" />
   </form>

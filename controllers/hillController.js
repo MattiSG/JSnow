@@ -7,7 +7,6 @@ var data = {};
 
 Hill.find({}, function(err,docs){
 	docs.each(function (hill){
-		console.log(hill);
 		data[hill.name] = hill;	
 	});
 });
