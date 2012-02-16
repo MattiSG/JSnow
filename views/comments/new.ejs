@@ -1,0 +1,18 @@
+
+<h2>Ajouter un commentaire</h2>
+</p>
+  <form action="/hills/<<= hill.name>>/comment" method="post">
+    <label for="title">Titre</label>
+    <input type="text" name="title"/>
+    <br />
+    <textarea name="content"></textarea>
+    <br />
+    <label for="mark">Note</label>
+    <input type="number" step="0.5" min="0" max="5" value="0" name="mark" />
+    <br />
+    
+		<input type="submit" value="Ajouter" />
+  </form>
+  
+  <a href='/'>Retour à l'accueil</a>
+</p>
