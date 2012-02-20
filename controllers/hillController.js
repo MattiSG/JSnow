@@ -51,9 +51,7 @@ exports.update = function(req, res) {
 		
 		hill.save(function(err) { 
 			if (!err)
-				res.render('hills/view', { hills: Object.values(data) });
-			else
-				res.render('hills/update/'+req.params.hillName);
+				res.redirect('/hills');
 		});
 	}
 	res.render('hills/update', { hill: data[req.params.hillName] });
@@ -83,9 +81,7 @@ exports.create = function(req, res) {
 	
 	hill.save(function(err) { 
 		if (!err)
-			res.render('hills/view', { hills: Object.values(data) });
-		else
-			res.render('hills/new');
+			res.redirect('/hills');
 	});
 }
 
