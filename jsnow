@@ -1,0 +1,7 @@
+#!/bin/sh
+
+npm install -d	# install all necessary dependencies
+mkdir data 2> /dev/null	# prepare database storage
+sudo lib/mongodb/mongod	--dbpath data &	# start up MongoDB daemon
+echo "Ok, if the following does not crash, you can open http://localhost:3000 in your favorite browser!"
+node app.js	# start the application

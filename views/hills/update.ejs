@@ -1,0 +1,28 @@
+
+<h2>Mettre à jour <<= hill.name >></h2>
+
+</p>
+  <form action="/hills/update/<<= hill.name>>" method="post">
+    <label for="name">Nom</label>
+    <input type="text" name="name" value="<<= hill.name>>"/>
+    <br />
+    <label for="runs.green.total">Nombre de pistes vertes</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.green.total >>" name="runs.green.total" />
+    <br />
+    <label for="runs.blue.total">Nombre de pistes bleues</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.blue.total >>" name="runs.blue.total" />
+    <br />
+    <label for="runs.red.total">Nombre de pistes rouges</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.red.total >>" name="runs.red.total" />
+    <br />
+    <label for="runs.black.total">Nombre de pistes noires</label>
+    <input type="number" step="1" min="0" value="<<= hill.runs.black.total >>" name="runs.black.total" />
+    <br />
+    <label for="lifts.total">Nombre de remonte-piste</label>
+    <input type="number" step="1" min="0" value="<<= hill.lifts.total >>" name="lifts.total" />
+    <br />
+    <input type="submit" value="Mettre à jour" />
+  </form>
+  
+  <a href='/'>Retour à l'accueil</a>
+</p>

@@ -1,21 +1,27 @@
-		
 // Module dependencies
 var mongoose      = require('mongoose'),
     Schema        = mongoose.Schema,
     mongooseAuth  = require('mongoose-auth'),
     everyauth 	  = require('everyauth'),
     Promise 	    = everyauth.Promise,
-    express       = require('express');
+    express       = require('express'),
+		mootools = require('./lib/mootools-core');
 
 // Models
 require('./models/user');
 User = mongoose.model('User');
+require('./models/hill');
 
 // DB Connect
 mongoose.connect('mongodb://localhost/JSnow');
 
 // App
 var app = module.exports = express.createServer();
+
+mongoose.model('Hill').find({}, function(err, docs){
+	console.log(docs);
+	if (!docs.length) require('./models/populate')();
+});
 
 // Configuration
 app.configure(function(){
@@ -43,20 +49,8 @@ app.configure('production', function(){
 	app.use(express.errorHandler()); 
 });
 
-// Routes
-
-app.get('/', function (req, res) {
-  console.log(req.loggedIn);
-  res.render('home');
-});
-
-
-app.get('/index', function(req,res) {
-	res.render('index', require('./controllers/hill'))
-});
-
 // Start
-
+require('./lib/easy-routes')(app, __dirname + '/routes');
 everyauth.debug = true;
 mongooseAuth.helpExpress(app);
 app.listen(3000);
