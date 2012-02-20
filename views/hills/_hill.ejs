@@ -1,0 +1,37 @@
+<article class="hill">
+	<h2 class="hill_name"><<= hill.name >></h2>
+	<p>
+		<span class="mark"><<= hill.mark >></span> -
+		<span class="snow_type"><<= hill.snowType >></span>. 
+		Dernière mise à jour le << var d = hill.lastUpdate >>
+		<<= d.getDate() >>/<<= d.getMonth() >>/<<= d.getFullYear() >>
+	</p>
+	
+	<h3 class="info_title">Informations générales</h3>
+	<p>
+		Hauteur de neige (haut/bas) : <<= hill.snowCover.top >> / <<= hill.snowCover.bottom >>
+	</p>
+	<p>
+		Remonte-piste (ouverts/total) : <<= hill.lifts.open >> / <<= hill.lifts.total >>
+	</p>
+	
+	<h3 class="info_title">Pistes ouvertes</h3>
+	<ol class="runs">
+		<li class="green"><<= hill.runs.green.open >> / <<= hill.runs.green.total >></li>
+		<li class="blue"><<= hill.runs.blue.open >> / <<= hill.runs.blue.total >></li>
+		<li class="red"><<= hill.runs.red.open >> / <<= hill.runs.red.total >></li>
+		<li class="black"><<= hill.runs.black.open >> / <<= hill.runs.black.total >></li>
+	</ol>
+	
+	<h3 class="info_title">Ce qu'ils en disent :</h3>
+	<<hill.comments.each(function(com) {>>
+	<article class="comment">
+		<p>
+			<span class="mark"><<= com.mark>></span>
+			<span class="user_name"><<= com.userID >></span> dit :
+		</p>
+		<p class="content"><<= com.content >></p>
+	</article>
+	<<});>>
+	<a href="/hills/<<= hill.name >>/comment">Ajouter un commentaire</a>
+</article>
