@@ -21,7 +21,6 @@ function unflat(from){
 		while (hierarchy.length != 1) {
 			elem = hierarchy.shift();
 			before = lastElem || to;
-			console.log("we set "+before+"[\""+elem+"\"]");
 			if (!before[elem]) before[elem] = {};
 			lastElem = before[elem];
 		}
@@ -90,7 +89,6 @@ exports.newCommentForm = function(req, res) {
 }
 
 exports.newComment = function(req, res) {
-	
 	var from = unflat(req.body);
 	var comment = new Comment();
 	
@@ -100,14 +98,11 @@ exports.newComment = function(req, res) {
 	
 	Hill.find({name: req.params.hillName}, function(err, doc) {
 		doc[0].comments.push(comment);
-		console.log(doc);
 		doc[0].save(function(err){
-			console.log(err);
-			if (!err) {
-				res.redirect('/hills/'+req.params.hillName);
-			}
+			if (err)
+				console.log("**Error**" + err);
+			
+			res.redirect('/hills/'+req.params.hillName);
 		});
 	});
-	
-	
 }
