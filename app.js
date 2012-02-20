@@ -4,9 +4,21 @@
  */
 
 var express = require('express'),
-	routes = require('./routes');
+	mootools = require('./lib/mootools-core'),
+	mongoose = require('mongoose');
 
 var app = module.exports = express.createServer();
+
+// require
+require('./models/hill');
+
+// db
+mongoose.connect('mongodb://localhost/JSnow');
+
+mongoose.model('Hill').find({}, function(err, docs) {
+	if (! docs.length)
+		require('./models/populate')();
+});
 
 // Configuration
 
@@ -32,9 +44,7 @@ app.configure('production', function(){
 	app.use(express.errorHandler()); 
 });
 
-// Routes
-
-app.get('/', routes.index);
+require('./lib/easy-routes')(app, __dirname + '/routes');
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
