@@ -1,5 +1,8 @@
 <article class="hill">
 	<h2 class="hill_name"><<= hill.name >></h2>
+	<<if (everyauth.loggedIn) {>>
+	<a href="/hills/update/<<= hill.name >>">Éditer</a>
+	<<}>>
 	<p>
 		<span class="mark"><<= hill.mark >></span> -
 		<span class="snow_type"><<= hill.snowType >></span>. 

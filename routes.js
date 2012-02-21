@@ -1,5 +1,5 @@
 var hillsController = require('./controllers/hillController');
-
+var usersController = require('./controllers/userController');
 module.exports = {
 	'/': 'home',
 	
@@ -10,7 +10,7 @@ module.exports = {
 		post: hillsController.create
 	},
 	
-	'/hills/update/:hillName': hillsController.update,
+	'/hills/update/:hillName': [usersController.isAuthorized, hillsController.update],
 	
 	'/hills/:hillName/comment': {
 		get: hillsController.newCommentForm,
