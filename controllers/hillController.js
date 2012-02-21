@@ -38,21 +38,23 @@ function unflat(from){
 
 exports.update = function(req, res) {
 	
+	var newHillValues = unflat(req.body);
+	
+	Hill.update({name: newHillValues.name}, newHillValues, null, function(err) { 
+		if (!err) {
+			req.flash('info', newHillValues.name+' a bien été mis à jour');
+			res.redirect('/hills');
+		} else {
+			req.flash('error', err);
+		}
+	});
+	
+}
+
+exports.updateForm = function(req, res) {
+	
 	fillData();
 	
-	if (req.originalMethod == "POST") {
-		var hill = data[req.params.hillName];
-		var from = unflat(req.body);
-		
-		Object.each(from, function(val, key){
-			hill[key] = val;
-		});
-		
-		hill.save(function(err) { 
-			if (!err)
-				res.redirect('/hills');
-		});
-	}
 	res.render('hills/update', { hill: data[req.params.hillName] });
 }
 
@@ -97,16 +99,26 @@ exports.newComment = function(req, res) {
 		comment[key] = val;
 	});
 	
+	if (comment.donotmark) {
+		comment['mark'] = null;
+	}
+	
+	if (req.user) {
+		comment.who = req.user.firstName + " " + req.user.lastName;
+	}
+	
 	Hill.find({name: req.params.hillName}, function(err, doc) {
-		doc[0].comments.push(comment);
-		console.log(doc);
-		doc[0].save(function(err){
-			console.log(err);
+		var newCommentList = doc[0].comments;
+		newCommentList.push(comment);
+		Hill.update({name: doc[0].name}, {comments: newCommentList}, null, function(err){
+			if (err) {
+				req.flash('error', err);
+				res.redirect('/hills');
+			}
 			if (!err) {
+				req.flash('info', 'Votre commentaire a bien été ajouté');
 				res.redirect('/hills/'+req.params.hillName);
 			}
 		});
 	});
-	
-	
 }

@@ -30,8 +30,8 @@
 	<<hill.comments.each(function(com) {>>
 	<article class="comment">
 		<p>
-			<span class="mark"><<= com.mark>></span>
-			<span class="user_name"><<= com.userID >></span> dit :
+			<span class="mark"><<= com.mark || "" >></span>
+			<span class="user_name"><<= com.who || "Anonymous" >></span> dit :
 		</p>
 		<p class="content"><<= com.content >></p>
 	</article>
