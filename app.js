@@ -52,5 +52,6 @@ app.configure('production', function(){
 require('./lib/easy-routes')(app, __dirname + '/routes');
 everyauth.debug = true;
 mongooseAuth.helpExpress(app);
+app.dynamicHelpers({ messages: require('express-messages') });
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
