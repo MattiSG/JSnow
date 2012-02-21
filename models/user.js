@@ -19,11 +19,10 @@ UserSchema.plugin(mongooseAuth, {
       loginWith: 'email', //loginWith: 'phone' also possible
       
       extraParams:{
-        name:{
-          first:String,
-          last:String
-        }
-      },
+      	firstName:String,
+      	lastName:String,
+      	skimaster:String
+     	},
 
       everyauth: {
             getLoginPath: '/users/login'
@@ -32,8 +31,8 @@ UserSchema.plugin(mongooseAuth, {
           , getRegisterPath: '/users/register'
           , postRegisterPath: '/users/register'
           , registerView: 'users/register.ejs'
-          , loginSuccessRedirect: '/'
-          , registerSuccessRedirect: '/'
+          , loginSuccessRedirect: '/home'
+          , registerSuccessRedirect: '/home'
         }
     }
 });

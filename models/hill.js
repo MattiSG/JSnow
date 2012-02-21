@@ -6,9 +6,10 @@ var mongoose     = require('mongoose'),
 var CommentSchema = new Schema({
 	title: {type: String, default: ""},
   content: String,
-  mark: {type: Number, min: 0, default: -1},
+  mark: {type: Number, min: 0, max: 4, default: -1},
   userID: ObjectId,
   date: {type: Date, default: Date.now}
+  //tags: {type: enum, {'rocky']}
 });
 mongoose.model('Comment', CommentSchema);
 
@@ -37,8 +38,8 @@ var HillSchema = new Schema({
   	}
   },
   snowCover: {
-  	top: {type: Number, min: 0, default: 0},
-  	bottom: {type: Number, min: 0, default: 0},
+  	top: {type: Number, min: 0},
+  	bottom: {type: Number, min: 0},
   },
   lifts: {
   	open: {type: Number, min: 0},
@@ -46,4 +47,5 @@ var HillSchema = new Schema({
   },
   lastUpdate: {type: Date, default: Date.now}
 });
+
 mongoose.model('Hill', HillSchema);

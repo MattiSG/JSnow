@@ -19,7 +19,6 @@ mongoose.connect('mongodb://localhost/JSnow');
 var app = module.exports = express.createServer();
 
 mongoose.model('Hill').find({}, function(err, docs){
-	console.log(docs);
 	if (!docs.length) require('./models/populate')();
 });
 

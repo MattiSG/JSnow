@@ -21,7 +21,6 @@ function unflat(from){
 		while (hierarchy.length != 1) {
 			elem = hierarchy.shift();
 			before = lastElem || to;
-			console.log("we set "+before+"[\""+elem+"\"]");
 			if (!before[elem]) before[elem] = {};
 			lastElem = before[elem];
 		}

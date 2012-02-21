@@ -1,7 +1,9 @@
 var hillsController = require('./controllers/hillController');
 
 module.exports = {
-	'/': 'users/login',
+	'/': 'home',
+	
+	'/home': 'home',
 	
 	'/hills/new': {
 		get: 'hills/new',

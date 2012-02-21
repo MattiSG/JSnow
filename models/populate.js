@@ -13,7 +13,7 @@ module.exports = function(){
 			comments: [
 				{
 					title: "Trop d'la bombe !",
-					mark: 4.1,
+					mark: 3.9,
 					content: "La neige est géniale, c'est du surkiff au top la forme !",
 					userID : "1",
 					date: new Date()
@@ -60,7 +60,7 @@ module.exports = function(){
 			comments: [
 				{
 					title: "On s'est bien éclatés !",
-					mark: 4.1,
+					mark: 4.0,
 					content: "J'y suis allé avec mon chien et ma tante, vous savez ils sont très gentils et on s'amuse bien lorsque l'on est tous ensemble, mais bon il faut avouer que par moments c'est pas si cool parce que ma tante elle est un peu nerveuse quand elle est en altitude, et ça lui fait manger beaucoup de kiwi avec de l'huile. Mais à part ça, les restos de la stations sont super bons !",
 					userID : "2",
 					date: new Date()
