@@ -18,8 +18,16 @@
     <label for="runs.black.open">Nombre de pistes noires ouvertes</label>
     <input type="number" step="1" min="0" max="<<= hill.runs.black.total >>" value="<<= hill.runs.black.open >>" name="runs.black.open" />
     <br />
+    
     <label for="lifts.open">Nombre de remonte-piste ouverts</label>
     <input type="number" step="1" min="0" max="<<= hill.lifts.total >>" value="<<= hill.lifts.open >>" name="lifts.open" />
+    <br />
+    
+    <label for="snowCover.top">Neige au sommet</label>
+    <input type="number" step="0.1" min="0" value="<<= hill.snowCover.top >>" name="snowCover.top" />
+    <br />
+    <label for="snowCover.bottom">Neige au pied des pistes</label>
+    <input type="number" step="0.1" min="0" value="<<= hill.snowCover.bottom >>" name="snowCover.bottom" />
     <br />
     <input type="submit" value="Mettre à jour" />
   </form>

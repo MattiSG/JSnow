@@ -6,11 +6,14 @@ module.exports = {
 	'/home': 'home',
 	
 	'/hills/new': {
-		get: 'hills/new',
-		post: hillsController.create
+		get: [usersController.isAuthorized, hillsController.newHill],
+		post: [usersController.isAuthorized, hillsController.create]
 	},
 	
-	'/hills/update/:hillName': [usersController.isAuthorized, hillsController.update],
+	'/hills/update/:hillName': {
+		get: [usersController.isAuthorized, hillsController.updateForm],
+		post: [usersController.isAuthorized, hillsController.update]
+	},
 	
 	'/hills/:hillName/comment': {
 		get: hillsController.newCommentForm,

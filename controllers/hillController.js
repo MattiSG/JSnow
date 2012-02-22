@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var Hill = mongoose.model('Hill');
 var Comment = mongoose.model('Comment');
 
+var UserController = require('./userController');
+
 var data = {};
 
 function fillData(){
@@ -40,15 +42,26 @@ exports.update = function(req, res) {
 	
 	var newHillValues = unflat(req.body);
 	
-	Hill.update({name: newHillValues.name}, newHillValues, null, function(err) { 
-		if (!err) {
-			req.flash('info', newHillValues.name+' a bien été mis à jour');
-			res.redirect('/hills');
-		} else {
-			req.flash('error', err);
-		}
-	});
-	
+	// we don't want to lose total values
+	Hill.findOne({name: newHillValues.name}, function(err, doc){
+		var runs = doc.runs;
+		var colors = ['green','blue','red','black']; // bugfix, cannot use Object.each(runs).
+		colors.each(function(color){
+			if (newHillValues.runs[color].open != null) {
+				newHillValues.runs[color].total = runs[color].total;
+			}
+		});
+		if (newHillValues.lifts.open != null)　newHillValues.lifts.total = doc.lifts.total;
+		
+		Hill.update({name: newHillValues.name}, newHillValues, null, function(err) { 
+			if (!err) {
+				req.flash('info', newHillValues.name+' a bien été mis à jour');
+				res.redirect('/hills');
+			} else {
+				req.flash('error', err);
+			}
+		});
+	});	
 }
 
 exports.updateForm = function(req, res) {
@@ -107,10 +120,10 @@ exports.newComment = function(req, res) {
 		comment.who = req.user.firstName + " " + req.user.lastName;
 	}
 	
-	Hill.find({name: req.params.hillName}, function(err, doc) {
-		var newCommentList = doc[0].comments;
+	Hill.findOne({name: req.params.hillName}, function(err, doc) {
+		var newCommentList = doc.comments;
 		newCommentList.push(comment);
-		Hill.update({name: doc[0].name}, {comments: newCommentList}, null, function(err){
+		Hill.update({name: doc.name}, {comments: newCommentList}, null, function(err){
 			if (err) {
 				req.flash('error', err);
 				res.redirect('/hills');

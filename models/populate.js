@@ -2,7 +2,7 @@
 var mongoose = require('mongoose'),
 		Hill = mongoose.model('Hill'),
 		Comment = mongoose.model('Comment'),
-		Tag = mongoose.model('Tag');
+		User = mongoose.model('User');
 
 module.exports = function(){
 	
@@ -130,4 +130,15 @@ module.exports = function(){
 			if (err) console.log(err);
 		});
 	});
+	
+	var userValues = { "firstName" : "Jérémy", "lastName" : "Gabriele", "skimaster" : "on", "email" : "jeremy.gabriele@gmail.com", "hash" : "$2a$10$qT0wBtxef2JI50vs4MM50OOfg61Gg3g8u5rub4lNpnVN9obEgXWoa", "salt" : "$2a$10$qT0wBtxef2JI50vs4MM50O"}
+	
+	var user = new User();
+	Object.each(userValues, function(val, key) {
+		user[key] = val;
+	});
+	
+	user.save(function(err){
+			if (err) console.log(err);
+		});
 } 
