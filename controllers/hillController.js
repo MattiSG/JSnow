@@ -85,6 +85,10 @@ exports.viewHill = function(req, res) {
 	res.render('hills/view', { hills: [ data[req.params.hillName] ] });
 }
 
+exports.viewHill = function(req, res) {
+	res.render('hills/new');
+}
+
 exports.create = function(req, res) {
 	var from = unflat(req.body);
 	var hill = new Hill();
@@ -94,8 +98,12 @@ exports.create = function(req, res) {
 	});
 	
 	hill.save(function(err) { 
-		if (!err)
+		if (!err) {
+			req.flash('info', 'Nouvelle station ajoutée');
 			res.redirect('/hills');
+		} else {
+			req.flash('error', err);
+		}
 	});
 }
 
@@ -112,6 +120,16 @@ exports.newComment = function(req, res) {
 		comment[key] = val;
 	});
 	
+	comment.tags = [];
+	
+	if (from.rocailleuse) comment.tags.push("rocailleuse");
+	if (from.poudreuse) comment.tags.push("poudreuse");
+	if (from.artificielle) comment.tags.push("artificielle");
+	if (from.dure) comment.tags.push("dure");
+	if (from.soupe) comment.tags.push("soupe");
+	
+	console.log(comment.tags);
+	
 	if (comment.donotmark) {
 		comment['mark'] = null;
 	}
@@ -126,11 +144,11 @@ exports.newComment = function(req, res) {
 		Hill.update({name: doc.name}, {comments: newCommentList}, null, function(err){
 			if (err) {
 				req.flash('error', err);
-				res.redirect('/hills');
+				res.redirect('/hills/'+req.params.hillName+'/comment');
 			}
 			if (!err) {
 				req.flash('info', 'Votre commentaire a bien été ajouté');
-				res.redirect('/hills/'+req.params.hillName);
+				res.redirect('/hills');
 			}
 		});
 	});

@@ -30,7 +30,12 @@
 	<article class="comment">
 		<p>
 			<span class="mark"><<= com.mark || "" >></span>
-			<span class="user_name"><<= com.who || "Anonymous" >></span> dit :
+			<span class="user_name"><<= com.who || "Anonymous" >></span>
+		</p>
+		<p class="tags">
+			<<com.tags.each(function(tag) {>>
+			<<= (tag+" ") >>
+			<<});>>
 		</p>
 		<p class="content"><<= com.content >></p>
 	</article>
