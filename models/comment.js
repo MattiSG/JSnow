@@ -4,7 +4,7 @@ var mongoose     = require('mongoose'),
 // Comment schema
 var CommentSchema = new Schema({
   content: String,
-  mark: {type: Number, min: 0, max: 4, default: -1},
+  mark: {type: Number, min: 0, max: 4},
   who: {type: String},
   date: {type: Date, default: Date.now},
   tags: [String]

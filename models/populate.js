@@ -112,7 +112,9 @@ module.exports = function(){
 		hill.snowType = item.snowType;
 		hill.runs = item.runs;
 		hill.snowCover = item.snowCover;
-		hill.lifts = item.lifts
+		hill.lifts = item.lifts;
+		
+		hill.lastUpdate = item.lastUpdate;
 		
 		item.comments.each(function (com) {
 			var comment = new Comment();
@@ -121,13 +123,16 @@ module.exports = function(){
 			comment.who = com.who;
 			comment.date = com.date;
 			
-			hill.comments.push(comment);
-		});
-		
-		hill.lastUpdate = item.lastUpdate;
-		
-		hill.save(function(err){
-			if (err) console.log(err);
+			comment.save(function(err) {
+				if (err) {
+					console.log(err);
+				} else {
+					hill.commentsID.push(comment._id);
+					hill.save(function(err){
+						if (err) console.log(err);
+					});
+				}
+			});
 		});
 	});
 	

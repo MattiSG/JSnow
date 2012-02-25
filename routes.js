@@ -1,5 +1,6 @@
 var hillsController = require('./controllers/hillController');
 var usersController = require('./controllers/userController');
+var commentsController = require('./controllers/commentController');
 module.exports = {
 	'/': 'home',
 	
@@ -17,7 +18,7 @@ module.exports = {
 	
 	'/hills/:hillName/comment': {
 		get: hillsController.newCommentForm,
-		post: hillsController.newComment
+		post: commentsController.newComment
 	},
 	
 	'/hills/:hillName': hillsController.viewHill,

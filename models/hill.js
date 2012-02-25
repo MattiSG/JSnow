@@ -2,13 +2,11 @@ var mongoose     = require('mongoose'),
     Schema       = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var CommentSchema = require('./comment').schema;
-
 // Hill schema
 var HillSchema = new Schema({
   name: String,
   mark: {type: Number, min: 0, max: 4},
-  comments: [CommentSchema],
+  commentsID: [ObjectId],
   runs: {
   	green: {
   		open: {type: Number, min: 0},

@@ -9,8 +9,10 @@ var mongoose      = require('mongoose'),
 
 // Models
 require('./models/user');
-User = mongoose.model('User');
 require('./models/hill');
+require('./models/comment');
+
+User = mongoose.model('User');
 
 // DB Connect
 mongoose.connect('mongodb://localhost/JSnow');
