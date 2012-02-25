@@ -5,16 +5,6 @@ var Comment = mongoose.model('Comment');
 
 var UserController = require('./userController');
 
-var data = {};
-
-function fillData(){
-	Hill.find({}, function(err,docs){
-		docs.each(function (hill){
-			data[hill.name] = hill;	
-		});
-	});
-}
-
 function unflat(from){
 	var to = {};
 	var elem = "", lastElem = null, before = null;
@@ -66,26 +56,43 @@ exports.update = function(req, res) {
 
 exports.updateForm = function(req, res) {
 	
-	fillData();
-	
-	res.render('hills/update', { hill: data[req.params.hillName] });
+	Hill.findOne({name: req.params.hillName}, function(err,doc){
+		if (!err) res.render('hills/update', { hill: doc });
+	});
 }
 
 exports.viewAll = function(req, res) {
 	
-	fillData();
-	
-	res.render('hills/view', { hills: Object.values(data) });
+	Hill.find({}, function(err,docs){
+		if (!err) {
+			docs.each(function(hill){
+				var total = 0;
+				var nbCom = 0;
+				hill.comments.each(function(com){
+					if (com.mark) {
+						total += com.mark;
+						nbCom++;
+					}
+				});
+				hill.mark = (nbCom==0)? 0: total/nbCom;
+		});
+			res.render('hills/view', { hills: Object.values(docs) });
+		}
+	});
 }
 
 exports.viewHill = function(req, res) {
 	
-	fillData();
-	
-	res.render('hills/view', { hills: [ data[req.params.hillName] ] });
+	Hill.findOne({name: req.params.hillName}, function(err,doc){
+		if (!err) res.render('hills/view', { hills: [ doc ] });
+		if (!err) {
+			calculateAverage([ doc ]);
+			res.render('hills/view', { hills: [ doc ] });
+		}
+	});
 }
 
-exports.viewHill = function(req, res) {
+exports.newHill = function(req, res) {
 	res.render('hills/new');
 }
 
@@ -108,7 +115,9 @@ exports.create = function(req, res) {
 }
 
 exports.newCommentForm = function(req, res) {
-	res.render('comments/new', { hill: data[req.params.hillName] });
+	Hill.findOne({name: req.params.hillName}, function(err,doc){
+		if (!err) res.render('comments/new', { hill: doc });
+	});
 }
 
 exports.newComment = function(req, res) {

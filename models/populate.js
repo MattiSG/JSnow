@@ -131,12 +131,14 @@ module.exports = function(){
 		});
 	});
 	
-	var userValues = { "firstName" : "Jérémy", "lastName" : "Gabriele", "skimaster" : "on", "email" : "jeremy.gabriele@gmail.com", "hash" : "$2a$10$qT0wBtxef2JI50vs4MM50OOfg61Gg3g8u5rub4lNpnVN9obEgXWoa", "salt" : "$2a$10$qT0wBtxef2JI50vs4MM50O"}
+	var userValues = { "firstName" : "admin", "lastName" : "de jsnow", "skimaster" : "on", "email" : "admin@jsnow.fr", "hash" : "$2a$10$GXn7u9CREenhl/uzTKx0q.U6ENcm.aQH8gPxu0070pz1PYOi0/FXe", "salt" : "$2a$10$GXn7u9CREenhl/uzTKx0q." }
 	
 	var user = new User();
 	Object.each(userValues, function(val, key) {
 		user[key] = val;
 	});
+	
+	
 	
 	user.save(function(err){
 			if (err) console.log(err);
