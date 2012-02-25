@@ -52,7 +52,7 @@ exports.update = function(req, res) {
 			}
 		});
 		if (newHillValues.lifts.open != null)　newHillValues.lifts.total = doc.lifts.total;
-		
+		newHillValues.lastUpdate = new Date();
 		Hill.update({name: newHillValues.name}, newHillValues, null, function(err) { 
 			if (!err) {
 				req.flash('info', newHillValues.name+' a bien été mis à jour');

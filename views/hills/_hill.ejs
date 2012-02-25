@@ -5,8 +5,18 @@
 	<<}>>
 	<p>
 		Note moyenne : <span class="mark"><<= hill.mark >></span>
-		Dernière mise à jour le << var d = hill.lastUpdate >>
-		<<= (d.getDate()<10)? "0"+d.getDate():d.getDate() >>/<<= (d.getMonth()<10)? "0"+d.getMonth():d.getMonth() >>/<<= d.getFullYear() >>
+		Dernière mise à jour le
+		<<
+			var d = hill.lastUpdate;
+			var year = ""+d.getFullYear();
+			var month = (d.getMonth()<10)? "0"+d.getMonth(): ""+d.getMonth();
+			var day = (d.getDate()<10)? "0"+d.getDate(): ""+d.getDate();
+			var hour = (d.getHours()<10)? "0"+d.getHours(): ""+d.getHours();
+			var minute = (d.getMinutes()<10)? "0"+d.getMinutes(): ""+d.getMinutes();
+			var second = (d.getSeconds()<10)? "0"+d.getSeconds(): ""+d.getSeconds();
+		>>
+		<<= day >>/<<= month >>/<<= year >> at
+		<<= hour >>:<<= minute >>:<<= second >>
 	</p>
 	
 	<h3 class="info_title">Informations générales</h3>
