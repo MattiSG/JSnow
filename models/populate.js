@@ -120,6 +120,8 @@ module.exports = function(){
 			comment.mark = com.mark;
 			comment.who = com.who;
 			comment.date = com.date;
+			comment.expires = new Date();
+			comment.expires.setTime(comment.date.getTime() + 600000); // expires in 10min
 			
 			hill.comments.push(comment);
 		});

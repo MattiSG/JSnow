@@ -5,6 +5,46 @@ var Comment = mongoose.model('Comment');
 
 var UserController = require('./userController');
 
+var nbAccess = 0;
+exports.cleanOldComments = function(req, res, next){
+	
+	if ((++nbAccess)%10 == 0) { // every 10 requests
+		Hill.find({}, function(err,docs){
+			if (!err) {
+				docs.each(function(h){
+					var dateNow = new Date();
+					h.comments.each(function(com){
+						if (dateNow > com.expires) {
+							h.comments[0].remove();
+							h.save(function(err){
+								if (!err) {
+									calculateAverage([ h ]);
+								} else
+								 console.log("error while removing old comment");
+							});
+						}
+					});
+				});
+			}
+		});
+	}
+	next();
+}
+
+function calculateAverage(hills) {
+	hills.each(function(h){
+		var total = 0;
+		var nbCom = 0;
+		h.comments.each(function(com){
+			if (com.mark) {
+				total += com.mark;
+				nbCom++;
+			}
+		});
+		h.mark = (nbCom==0)? undefined: total/nbCom;
+	});
+}
+
 function unflat(from){
 	var to = {};
 	var elem = "", lastElem = null, before = null;
@@ -62,20 +102,10 @@ exports.updateForm = function(req, res) {
 }
 
 exports.viewAll = function(req, res) {
-	
+
 	Hill.find({}, function(err,docs){
 		if (!err) {
-			docs.each(function(hill){
-				var total = 0;
-				var nbCom = 0;
-				hill.comments.each(function(com){
-					if (com.mark) {
-						total += com.mark;
-						nbCom++;
-					}
-				});
-				hill.mark = (nbCom==0)? 0: total/nbCom;
-		});
+			calculateAverage(docs);
 			res.render('hills/view', { hills: Object.values(docs) });
 		}
 	});
@@ -84,7 +114,6 @@ exports.viewAll = function(req, res) {
 exports.viewHill = function(req, res) {
 	
 	Hill.findOne({name: req.params.hillName}, function(err,doc){
-		if (!err) res.render('hills/view', { hills: [ doc ] });
 		if (!err) {
 			calculateAverage([ doc ]);
 			res.render('hills/view', { hills: [ doc ] });
@@ -142,6 +171,10 @@ exports.newComment = function(req, res) {
 	if (comment.donotmark) {
 		comment['mark'] = null;
 	}
+	
+	comment.date = new Date();
+	comment.expires = new Date();
+	comment.expires.setTime(comment.date.getTime() + 60000); // expires in 1min
 	
 	if (req.user) {
 		comment.who = req.user.firstName + " " + req.user.lastName;

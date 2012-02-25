@@ -7,6 +7,7 @@ var CommentSchema = new Schema({
   mark: {type: Number, min: 0, max: 4, default: -1},
   who: {type: String},
   date: {type: Date, default: Date.now},
+  expires: {type: Date},
   tags: [String]
 });
 mongoose.model('Comment', CommentSchema);
