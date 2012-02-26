@@ -48,6 +48,8 @@ module.exports = {
 			hillsController.viewHill
 	],
 	
+	'/hills/raw/:hillName': hillsController.viewRawHill,
+	
 	'/hills': [
 			hillsController.cleanOldComments,
 			hillsController.viewAll

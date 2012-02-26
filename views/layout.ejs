@@ -35,12 +35,18 @@
 			<<}>>
 		</footer>
 
+		<script src="/js/mootools-core-1.4.4.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
-			var socket = io.connect('/');
-			socket.on('hillUpdate', function(data) {
-				console.log(data);
-			});
+			(function() {
+				var socket = io.connect('/');
+				socket.on('hillUpdate', function(hillName) {
+					new Request.HTML({
+						url: '/hills/raw/' + hillName,	// request raw view of the updated hill
+						update: hillName	// we'll update the element with this ID
+					}).send();
+				});
+			})();
 		</script>
 	</body>
 </html>

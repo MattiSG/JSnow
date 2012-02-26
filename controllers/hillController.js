@@ -141,6 +141,15 @@ exports.viewHill = function(req, res) {
 	});
 }
 
+exports.viewRawHill = function(req, res) {
+	Hill.findOne({name: req.params.hillName}, function(err, hill) {
+		if (!err) {
+			updateAverages([ hill ]);
+			res.partial('hills/_hill', [ hill ]);
+		}
+	});	
+}
+
 exports.newHill = function(req, res) {
 	res.render('hills/new');
 }
