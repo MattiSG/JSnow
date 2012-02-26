@@ -2,24 +2,32 @@
 <h2>Mettre à jour <<= hill.name >></h2>
 
 </p>
-  <form action="/hills/update/<<= hill.name>>" method="post">
+  <form action="/hills/update/<<= hill.name >>" method="post">
     <label for="name">Nom</label>
-    <input type="text" name="name" value="<<= hill.name>>"/>
+    <input type="text" name="name" value="<<= hill.name >>"/>
     <br />
-    <label for="runs.green.total">Nombre de pistes vertes</label>
-    <input type="number" step="1" min="0" value="<<= hill.runs.green.total >>" name="runs.green.total" />
+    <label for="runs.green.open">Nombre de pistes vertes ouvertes</label>
+    <input type="number" step="1" min="0" max="<<= hill.runs.green.total >>" value="<<= hill.runs.green.open >>" name="runs.green.open" />
     <br />
-    <label for="runs.blue.total">Nombre de pistes bleues</label>
-    <input type="number" step="1" min="0" value="<<= hill.runs.blue.total >>" name="runs.blue.total" />
+    <label for="runs.blue.open">Nombre de pistes bleues ouvertes</label>
+    <input type="number" step="1" min="0" max="<<= hill.runs.blue.total >>" value="<<= hill.runs.blue.open >>" name="runs.blue.open" />
     <br />
-    <label for="runs.red.total">Nombre de pistes rouges</label>
-    <input type="number" step="1" min="0" value="<<= hill.runs.red.total >>" name="runs.red.total" />
+    <label for="runs.red.open">Nombre de pistes rouges ouvertes</label>
+    <input type="number" step="1" min="0" max="<<= hill.runs.red.total >>" value="<<= hill.runs.red.open >>" name="runs.red.open" />
     <br />
-    <label for="runs.black.total">Nombre de pistes noires</label>
-    <input type="number" step="1" min="0" value="<<= hill.runs.black.total >>" name="runs.black.total" />
+    <label for="runs.black.open">Nombre de pistes noires ouvertes</label>
+    <input type="number" step="1" min="0" max="<<= hill.runs.black.total >>" value="<<= hill.runs.black.open >>" name="runs.black.open" />
     <br />
-    <label for="lifts.total">Nombre de remonte-piste</label>
-    <input type="number" step="1" min="0" value="<<= hill.lifts.total >>" name="lifts.total" />
+    
+    <label for="lifts.open">Nombre de remonte-piste ouverts</label>
+    <input type="number" step="1" min="0" max="<<= hill.lifts.total >>" value="<<= hill.lifts.open >>" name="lifts.open" />
+    <br />
+    
+    <label for="snowCover.top">Neige au sommet</label>
+    <input type="number" step="0.1" min="0" value="<<= hill.snowCover.top >>" name="snowCover.top" />
+    <br />
+    <label for="snowCover.bottom">Neige au pied des pistes</label>
+    <input type="number" step="0.1" min="0" value="<<= hill.snowCover.bottom >>" name="snowCover.bottom" />
     <br />
     <input type="submit" value="Mettre à jour" />
   </form>

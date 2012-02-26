@@ -2,21 +2,12 @@ var mongoose     = require('mongoose'),
     Schema       = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-// Comment schema
-var CommentSchema = new Schema({
-	title: {type: String, default: ""},
-  content: String,
-  mark: {type: Number, min: 0, default: -1},
-  userID: ObjectId,
-  date: {type: Date, default: Date.now}
-});
-mongoose.model('Comment', CommentSchema);
+var CommentSchema = require('./comment').schema;
 
 // Hill schema
 var HillSchema = new Schema({
   name: String,
-  mark: {type: Number, min: 0, default: -1},
-  snowType: {type: String, default: ""},
+  mark: {type: Number, min: 0, max: 4},
   comments: [CommentSchema],
   runs: {
   	green: {
@@ -37,8 +28,8 @@ var HillSchema = new Schema({
   	}
   },
   snowCover: {
-  	top: {type: Number, min: 0, default: 0},
-  	bottom: {type: Number, min: 0, default: 0},
+  	top: {type: Number, min: 0},
+  	bottom: {type: Number, min: 0},
   },
   lifts: {
   	open: {type: Number, min: 0},
@@ -46,4 +37,5 @@ var HillSchema = new Schema({
   },
   lastUpdate: {type: Date, default: Date.now}
 });
+
 mongoose.model('Hill', HillSchema);

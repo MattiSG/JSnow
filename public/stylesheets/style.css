@@ -49,6 +49,11 @@ body
   width: 100%;
 }
 
+footer
+{
+	border-top: solid 1px black;	
+}
+
 ol
 {
   list-style-type: asterisks;
@@ -87,6 +92,24 @@ ol
 .comment .mark
 {
   
+}
+
+.error
+{
+	border: 1px dashed red;
+	color: red;
+	list-style-type: none;
+	padding: 1em;
+	width: 40%;
+}
+
+.info
+{
+	border: 1px dashed red;
+	color: blue;
+	list-style-type: none;
+	padding: 1em;
+	width: 40%;
 }
 
 .info_title

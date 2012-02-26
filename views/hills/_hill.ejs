@@ -1,10 +1,22 @@
 <article class="hill">
 	<h2 class="hill_name"><<= hill.name >></h2>
+	<<if (everyauth.loggedIn && (everyauth.user.skimaster=='on')) {>>
+	<a href="/hills/update/<<= hill.name >>">Éditer</a>
+	<<}>>
 	<p>
-		<span class="mark"><<= hill.mark >></span> -
-		<span class="snow_type"><<= hill.snowType >></span>. 
-		Dernière mise à jour le << var d = hill.lastUpdate >>
-		<<= d.getDate() >>/<<= d.getMonth() >>/<<= d.getFullYear() >>
+		Note moyenne : <span class="mark"><<= hill.mark >></span>
+		Dernière mise à jour le
+		<<
+			var d = hill.lastUpdate;
+			var year = ""+d.getFullYear();
+			var month = (d.getMonth()<10)? "0"+d.getMonth(): ""+d.getMonth();
+			var day = (d.getDate()<10)? "0"+d.getDate(): ""+d.getDate();
+			var hour = (d.getHours()<10)? "0"+d.getHours(): ""+d.getHours();
+			var minute = (d.getMinutes()<10)? "0"+d.getMinutes(): ""+d.getMinutes();
+			var second = (d.getSeconds()<10)? "0"+d.getSeconds(): ""+d.getSeconds();
+		>>
+		<<= day >>/<<= month >>/<<= year >> at
+		<<= hour >>:<<= minute >>:<<= second >>
 	</p>
 	
 	<h3 class="info_title">Informations générales</h3>
@@ -27,8 +39,13 @@
 	<<hill.comments.each(function(com) {>>
 	<article class="comment">
 		<p>
-			<span class="mark"><<= com.mark>></span>
-			<span class="user_name"><<= com.userID >></span> dit :
+			<span class="mark"><<= com.mark || "" >></span>
+			<span class="user_name"><<= com.who || "Anonymous" >></span>
+		</p>
+		<p class="tags">
+			<<com.tags.each(function(tag) {>>
+			<<= (tag+" ") >>
+			<<});>>
 		</p>
 		<p class="content"><<= com.content >></p>
 	</article>
