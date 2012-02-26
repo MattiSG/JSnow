@@ -88,9 +88,11 @@ function unflat(from){
 exports.update = function(req, res) {
 	
 	var newHillValues = unflat(req.body);
+	newHillValues.name = req.params.hillName;
 	
 	// we don't want to lose total values
 	Hill.findOne({name: newHillValues.name}, function(err, doc){
+		if (err) throw err;
 		var runs = doc.runs;
 		var colors = ['green','blue','red','black']; // bugfix, cannot use Object.each(runs).
 		colors.each(function(color){
