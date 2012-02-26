@@ -14,16 +14,14 @@ module.exports = function(){
 				{
 					mark: 3.9,
 					content: "La neige est géniale, c'est du surkiff au top la forme !",
-					who: "Brian",
-					tags: ['poudreuse'],
-					date: new Date()
+					author: "Brian",
+					tags: ['poudreuse']
 				},
 				{
 					mark: 2.7,
 					content: "J'ai connu mieux en 1995, mais c'était chouette quand même.",
-					who: "Matti",
-					tags: ['rocailleuse', 'artificielle'],
-					date: new Date()
+					author: "Matti",
+					tags: ['rocailleuse', 'artificielle']
 				}],
 			runs: {
 				green: {
@@ -60,16 +58,14 @@ module.exports = function(){
 				{
 					mark: 4.0,
 					content: "J'y suis allé avec mon chien et ma tante, vous savez ils sont très gentils et on s'amuse bien lorsque l'on est tous ensemble, mais bon il faut avouer que par moments c'est pas si cool parce que ma tante elle est un peu nerveuse quand elle est en altitude, et ça lui fait manger beaucoup de kiwi avec de l'huile. Mais à part ça, les restos de la stations sont super bons !",
-					who: "Benoit",
-					tags: ['rocailleuse', 'poudreuse', 'artificielle', 'dure', 'soupe'],
-					date: new Date()
+					author: "Benoît",
+					tags: ['rocailleuse', 'poudreuse', 'artificielle', 'dure', 'soupe']
 				},
 				{
 					mark: 3.5,
 					content: "C'était mieux qu'Isola.",
-					who: "Jeremy",
-					tags: ['rocailleuse', 'dure'],
-					date: new Date()
+					author: "Jérémy",
+					tags: ['rocailleuse', 'dure']
 				}],
 			runs: {
 				green: {
@@ -102,29 +98,15 @@ module.exports = function(){
 	
 	];
 	
-	stations.each(function(item) {
+	stations.each(function(stationData) {
 		
 		var hill = new Hill();
-		hill.name = item.name;
-		hill.mark = item.mark;
-		hill.snowType = item.snowType;
-		hill.runs = item.runs;
-		hill.snowCover = item.snowCover;
-		hill.lifts = item.lifts
 		
-		item.comments.each(function (com) {
-			var comment = new Comment();
-			comment.content = com.content;
-			comment.mark = com.mark;
-			comment.who = com.who;
-			comment.date = com.date;
-			comment.expires = new Date();
-			comment.expires.setTime(comment.date.getTime() + 600000); // expires in 10min
-			
-			hill.comments.push(comment);
+		Object.each(stationData, function(value, key) {
+			hill[key] = stationData[key];
 		});
 		
-		hill.lastUpdate = item.lastUpdate;
+		hill.lastUpdate = stationData.lastUpdate;
 		
 		hill.save(function(err){
 			if (err) console.log(err);

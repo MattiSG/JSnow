@@ -23,11 +23,11 @@ exports.cleanOldComments = function(req, res, next) {
 		if (err) throw err;
 		
 		var updatedHills = [],
-			now = new Date();
+			oldestAllowedDate = new Date() - COMMENT_TIMEOUT;
 					
 		hills.each(function(hill) {
 			hill.comments.each(function removeOldCommentIfNecessary(comment) {
-				if (comment.expires > now)
+				if (comment.creationDate > oldestAllowedDate)
 					return;	// this comment is not old enough to be pruned
 					
 				comment.remove();
@@ -188,9 +188,8 @@ exports.newComment = function(req, res) {
 	comment.expires = new Date();
 	comment.expires.setTime(comment.date.getTime() + COMMENT_TIMEOUT); // expires in 1min
 	
-	if (req.user) {
-		comment.who = req.user.firstName + " " + req.user.lastName;
-	}
+	if (req.user)
+		comment.author = req.user.firstName + " " + req.user.lastName;
 	
 	Hill.findOne({name: req.params.hillName}, function(err, doc) {
 		var newCommentList = doc.comments;

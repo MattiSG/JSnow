@@ -36,19 +36,8 @@
 	</ol>
 	
 	<h3 class="info_title">Ce qu'ils en disent :</h3>
-	<<hill.comments.each(function(com) {>>
-	<article class="comment">
-		<p>
-			<span class="mark"><<= com.mark || "" >></span>
-			<span class="user_name"><<= com.who || "Anonymous" >></span>
-		</p>
-		<p class="tags">
-			<<com.tags.each(function(tag) {>>
-			<<= (tag+" ") >>
-			<<});>>
-		</p>
-		<p class="content"><<= com.content >></p>
-	</article>
-	<<});>>
+	<<-
+		partial('comments/_comment', hill.comments)
+	>>
 	<a href="/hills/<<= hill.name >>/comment">Ajouter un commentaire</a>
 </article>
