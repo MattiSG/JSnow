@@ -1,0 +1,10 @@
+<article class="comment">
+	<p>
+		<span class="mark"><<= comment.mark || "" >></span>
+		<span class="user_name"><<= comment.author || "Anonyme" >></span>
+	</p>
+	<p class="tags">
+		<<= comment.tags.join(", ") >>
+	</p>
+	<p class="content"><<= comment.content >></p>
+</article>

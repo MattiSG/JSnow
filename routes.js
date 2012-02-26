@@ -1,21 +1,26 @@
 var hillsController = require('./controllers/hillController');
-
+var usersController = require('./controllers/userController');
 module.exports = {
-	'/': 'users/login',	
+	'/': 'home',
+	
+	'/home': 'home',
 	
 	'/hills/new': {
-		get: 'hills/new',
-		post: hillsController.create
+		get: [hillsController.cleanOldComments, usersController.isAuthorized, hillsController.newHill],
+		post: [usersController.isAuthorized, hillsController.create]
 	},
 	
-	'/hills/update/:hillName': hillsController.update,
+	'/hills/update/:hillName': {
+		get: [hillsController.cleanOldComments, usersController.isAuthorized, hillsController.updateForm],
+		post: [hillsController.cleanOldComments, usersController.isAuthorized, hillsController.update]
+	},
 	
 	'/hills/:hillName/comment': {
-		get: hillsController.newCommentForm,
-		post: hillsController.newComment
+		get: [hillsController.cleanOldComments, hillsController.newCommentForm],
+		post: [hillsController.cleanOldComments, hillsController.newComment]
 	},
 	
-	'/hills/:hillName': hillsController.viewHill,
+	'/hills/:hillName': [hillsController.cleanOldComments, hillsController.viewHill],
 	
-	'/hills': hillsController.viewAll
+	'/hills': [hillsController.cleanOldComments, hillsController.viewAll]
 }
