@@ -5,11 +5,9 @@ exports.setup = function socketSetup(app) {
 	
 	socketio.sockets.on('connection', function(socket) {
 		sockets.push(socket);
-		console.log(sockets.length + " sockets");
 		
 		socket.on('disconnect', function() {
 			sockets.erase(socket);
-			console.log(sockets.length);
 		});
 	});
 }
