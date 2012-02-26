@@ -4,10 +4,10 @@
 	"private": true,
 	"dependencies": {
 		"express": "2.5.5",
-		"stylus": ">= 0.0.1",
 		"mongoose": "latest",
 		"mongoose-auth": "latest",
 		"everyauth": "latest",
-		"express-messages" : "latest"
+		"express-messages" : "latest",
+		"socket.io": "latest"
 	}
 }

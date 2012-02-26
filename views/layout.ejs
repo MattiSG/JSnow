@@ -33,9 +33,14 @@
 				Vous n'êtes pas connecté... <a href='/users/login'>Connectez-vous</a> ou <a href='/users/register'>Inscrivez-vous</a> !
 			</p>
 			<<}>>
-
 		</footer>
 
-		
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io.connect('/');
+			socket.on('hillUpdate', function(data) {
+				console.log(data);
+			});
+		</script>
 	</body>
 </html>

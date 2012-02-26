@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	sockets = require('./sockets');
 
 var Hill = mongoose.model('Hill');
 var Comment = mongoose.model('Comment');
@@ -207,4 +208,6 @@ exports.newComment = function(req, res) {
 			}
 		});
 	});
+	
+	sockets.pushUpdate(req.params.hillName);
 }

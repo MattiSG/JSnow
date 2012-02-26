@@ -1,5 +1,7 @@
 var hillsController = require('./controllers/hillController');
 var usersController = require('./controllers/userController');
+var sockets = require('./controllers/sockets.js');
+
 module.exports = {
 	'/': 'home',
 	

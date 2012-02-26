@@ -23,6 +23,9 @@ mongoose.model('Hill').find({}, function(err, docs) {
 // App
 var app = module.exports = express.createServer();
 
+// WebSockets
+require('./controllers/sockets.js').setup(app);
+
 // Configuration
 app.configure(function(){
 	app.set('views', __dirname + '/views');
