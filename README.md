@@ -34,6 +34,8 @@ Then:
 
     git clone git://github.com/MattiSG/JSnow.git	# or simply download a zipball on the "download" tab
     ./jsnow
+    
+…and you can simply hit `localhost:3000` on your favorite browser.
 
 ### Custom install ###
 
