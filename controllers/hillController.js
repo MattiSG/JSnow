@@ -206,16 +206,21 @@ exports.newComment = function(req, res) {
 	Hill.findOne({name: req.params.hillName}, function(err, doc) {
 		var newCommentList = doc.comments;
 		newCommentList.push(comment);
-		Hill.update({name: doc.name}, {comments: newCommentList}, null, function(err){
-			if (err) {
-				req.flash('error', err);
-				res.redirect('/hills/'+req.params.hillName+'/comment');
+		Hill.update(
+			{ name: doc.name },
+			{
+				comments: newCommentList,
+				lastUpdate: new Date()
+			}, null, function(err) {
+				if (!err) {
+					req.flash('info', 'Votre commentaire a bien été ajouté');
+					res.redirect('/hills');
+				} else {
+					req.flash('error', err);
+					res.redirect('/hills/'+req.params.hillName+'/comment');
+				}
 			}
-			if (!err) {
-				req.flash('info', 'Votre commentaire a bien été ajouté');
-				res.redirect('/hills');
-			}
-		});
+		);
 	});
 	
 	sockets.pushUpdate(req.params.hillName);
