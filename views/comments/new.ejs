@@ -2,16 +2,22 @@
 <h2>Ajouter un commentaire</h2>
 </p>
   <form action="/hills/<<= hill.name>>/comment" method="post">
-    <label for="title">Titre</label>
-    <input type="text" name="title"/>
-    <br />
     <textarea name="content"></textarea>
     <br />
     <label for="mark">Note</label>
-    <input type="number" step="0.5" min="0" max="5" value="0" name="mark" />
+    <input type="number" step="0.5" min="0" max="4" value="0" name="mark" />
     <br />
+    <label for="donotmark">Je ne veux pas donner de note</label>
+    <input type="checkbox" name="donotmark" />
+    <br />
+    <label>Type de neige : </label>
+    <input type="checkbox" name="rocailleuse">rocailleuse</input>
+    <input type="checkbox" name="poudreuse">poudreuse</input>
+    <input type="checkbox" name="artificielle">artificielle</input>
+    <input type="checkbox" name="dure">dure</input>
+    <input type="checkbox" name="soupe">soupe</input>
     
-		<input type="submit" value="Ajouter" />
+	<input type="submit" value="Ajouter" />
   </form>
   
   <a href='/'>Retour à l'accueil</a>

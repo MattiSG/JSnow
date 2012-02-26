@@ -1,6 +1,6 @@
-var mongoose     = require('mongoose'),
-    Schema       = mongoose.Schema,
-    mongooseAuth = require('mongoose-auth');
+var mongoose      = require('mongoose'),
+    Schema        = mongoose.Schema,
+    mongooseAuth  = require('mongoose-auth');
 
 var UserSchema = new Schema({
   name:String,
@@ -19,21 +19,20 @@ UserSchema.plugin(mongooseAuth, {
       loginWith: 'email', //loginWith: 'phone' also possible
       
       extraParams:{
-        name:{
-          first:String,
-          last:String
-        }
-      },
+      	firstName:String,
+      	lastName:String,
+      	skimaster:String
+     	},
 
       everyauth: {
-            getLoginPath: '/login'
-          , postLoginPath: '/login'
-          , loginView: 'login.ejs'
-          , getRegisterPath: '/register'
-          , postRegisterPath: '/register'
-          , registerView: 'register.ejs'
-          , loginSuccessRedirect: '/'
-          , registerSuccessRedirect: '/'
+            getLoginPath: '/users/login'
+          , postLoginPath: '/users/login'
+          , loginView: 'users/login.ejs'
+          , getRegisterPath: '/users/register'
+          , postRegisterPath: '/users/register'
+          , registerView: 'users/register.ejs'
+          , loginSuccessRedirect: '/home'
+          , registerSuccessRedirect: '/home'
         }
     }
 });

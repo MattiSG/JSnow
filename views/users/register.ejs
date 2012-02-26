@@ -1,0 +1,32 @@
+<< if (!everyauth.loggedIn) {>>
+<h2>S'enregistrer</h2>
+	<< if  ('undefined' !== typeof errors && errors.length) {>>
+	<ul>
+	  << for (var i=0; i<errors.length; i++) {>>
+	  <li class="error"><<= errors[i] >></li>
+	  <<}>>
+	</ul>
+	<<}>>
+</p>
+  <form action="/users/register" method="post">
+    <label for="<<= everyauth.password.loginFormFieldName >>">Email</label>
+    <input type="text" name="<<= everyauth.password.loginFormFieldName >>" />
+    <br />
+    <label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label>
+    <input type="password" name="<<= everyauth.password.passwordFormFieldName >>" />
+    <br />
+    <label for="firstName">Prénom</label>
+    <input type="text" name="firstName" />
+    <br />
+    <label for="lastName">Nom</label>
+    <input type="text" name="lastName" />
+    <br />
+    <input type="submit" value="Créer un compte" />
+  </form>
+  
+<a href='/'>Retour à l'accueil</a>
+</p>
+<< } // else find a way to redirect >>
+
+<footer>
+</footer>
