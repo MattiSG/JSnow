@@ -9,7 +9,6 @@ module.exports = function(){
 	var stations = [
 		{
 			name: "Isola",
-			mark: 3.4,
 			snowType: "Powder",
 			comments: [
 				{
@@ -56,7 +55,6 @@ module.exports = function(){
 		},
 		{
 			name: "Auron",
-			mark: 3.8,
 			snowType: "Powder",
 			comments: [
 				{
@@ -133,16 +131,21 @@ module.exports = function(){
 		});
 	});
 	
-	var userValues = { "firstName" : "admin", "lastName" : "de jsnow", "skimaster" : "on", "email" : "admin@jsnow.fr", "hash" : "$2a$10$GXn7u9CREenhl/uzTKx0q.U6ENcm.aQH8gPxu0070pz1PYOi0/FXe", "salt" : "$2a$10$GXn7u9CREenhl/uzTKx0q." }
+	var userValues = {
+		firstName: "Admin",
+		lastName: "de JSnow",
+		skimaster: 'on',
+		email: "admin@jsnow.fr",
+		hash: "$2a$10$GXn7u9CREenhl/uzTKx0q.U6ENcm.aQH8gPxu0070pz1PYOi0/FXe",
+		salt: "$2a$10$GXn7u9CREenhl/uzTKx0q."
+	}
 	
 	var user = new User();
 	Object.each(userValues, function(val, key) {
 		user[key] = val;
 	});
 	
-	
-	
-	user.save(function(err){
-			if (err) console.log(err);
-		});
+	user.save(function(err) {
+		if (err) throw err;
+	});
 } 

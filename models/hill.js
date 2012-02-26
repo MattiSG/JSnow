@@ -7,7 +7,6 @@ var CommentSchema = require('./comment').schema;
 // Hill schema
 var HillSchema = new Schema({
   name: String,
-  mark: {type: Number, min: 0, max: 4},
   comments: [CommentSchema],
   runs: {
   	green: {
