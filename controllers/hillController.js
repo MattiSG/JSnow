@@ -62,7 +62,7 @@ function updateAverages(hills) {
 }
 
 
-function unflat(from){
+function unflat(from) {
 	var to = {};
 	var elem = "", lastElem = null, before = null;
 	Object.each(from, function(val, key){
@@ -188,7 +188,7 @@ exports.newComment = function(req, res) {
 	
 	comment.date = new Date();
 	comment.expires = new Date();
-	comment.expires.setTime(comment.date.getTime() + COMMENT_TIMEOUT); // expires in 1min
+	comment.expires.setTime(comment.date.getTime() + COMMENT_TIMEOUT);
 	
 	if (req.user)
 		comment.author = req.user.firstName + " " + req.user.lastName;

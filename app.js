@@ -1,40 +1,40 @@
 // Module dependencies
-var mongoose      = require('mongoose'),
-    Schema        = mongoose.Schema,
-    mongooseAuth  = require('mongoose-auth'),
-    everyauth 	  = require('everyauth'),
-    Promise 	    = everyauth.Promise,
-    express       = require('express'),
-		mootools = require('./lib/mootools-core');
+var mongoose  		= require('mongoose'),
+	Schema			= mongoose.Schema,
+	mongooseAuth	= require('mongoose-auth'),
+	everyauth		= require('everyauth'),
+	Promise			= everyauth.Promise,
+	express			= require('express'),
+	mootools		= require('./lib/mootools-core');
 
 // Models
 require('./models/user');
 User = mongoose.model('User');
 require('./models/hill');
 
-// DB Connect
+// DB Connect and population
 mongoose.connect('mongodb://localhost/JSnow');
-
-// App
-var app = module.exports = express.createServer();
 
 mongoose.model('Hill').find({}, function(err, docs) {
 	if (! docs.length)
 		require('./models/populate')();
 });
 
+// App
+var app = module.exports = express.createServer();
+
 // Configuration
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.cookieParser());
-  app.use(express.logger());
-  app.use(express.session({ secret: 'JSnow'}));
-  app.use(mongooseAuth.middleware());
-  app.use(express.static(__dirname + "/public"));
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+	app.set('views', __dirname + '/views');
+	app.set('view engine', 'ejs');
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(express.cookieParser());
+	app.use(express.logger());
+	app.use(express.session({ secret: 'JSnow'}));
+	app.use(mongooseAuth.middleware());
+	app.use(express.static(__dirname + "/public"));
+	app.use(require('stylus').middleware({ src: __dirname + '/public' }));
 	app.set('view options', {
 		open: '<<',
 		close: '>>'
