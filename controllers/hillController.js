@@ -6,44 +6,61 @@ var Comment = mongoose.model('Comment');
 var UserController = require('./userController');
 
 var nbAccess = 0;
-exports.cleanOldComments = function(req, res, next){
+
+var COMMENT_TIMEOUT = 60 * 1000,	// how long (in ms) before a comment is considered old (a candidate for pruning)
+	COMMENT_PRUNING_FREQUENCY = 2, // we'll clean old comments every nth request
+	POSSIBLE_TAGS = ['rocailleuse', 'poudreuse', 'artificielle', 'dure', 'soupe'];
 	
-	if ((++nbAccess)%10 == 0) { // every 10 requests
-		Hill.find({}, function(err,docs){
-			if (!err) {
-				docs.each(function(h){
-					var dateNow = new Date();
-					h.comments.each(function(com){
-						if (dateNow > com.expires) {
-							h.comments[0].remove();
-							h.save(function(err){
-								if (!err) {
-									calculateAverage([ h ]);
-								} else
-								 console.log("error while removing old comment");
-							});
-						}
-					});
+	
+exports.cleanOldComments = function(req, res, next) {
+	if ((++nbAccess) % COMMENT_PRUNING_FREQUENCY)
+		return next();
+		
+	// every COMMENT_PRUNING_FREQUENCY requests
+	// prune old comments
+	
+	Hill.find({}, function(err, hills) {
+		if (err) throw err;
+		
+		var updatedHills = [],
+			now = new Date();
+					
+		hills.each(function(hill) {
+			hill.comments.each(function removeOldCommentIfNecessary(comment) {
+				if (comment.expires > now)
+					return;	// this comment is not old enough to be pruned
+					
+				comment.remove();
+				hill.save(function(err) {
+					if (err)
+						throw console.log("error while removing old comment: ", err);
 				});
-			}
+				
+				updatedHills.push(hill);
+			});
 		});
-	}
+
+		updateAverages(updatedHills);
+	});
+	
 	next();
 }
 
-function calculateAverage(hills) {
-	hills.each(function(h){
-		var total = 0;
-		var nbCom = 0;
-		h.comments.each(function(com){
-			if (com.mark) {
-				total += com.mark;
-				nbCom++;
+function updateAverages(hills) {
+	hills.each(function(hill) {
+		var total = 0,
+			count = 0;
+		hill.comments.each(function(comment) {
+			if (comment.mark) {
+				total += comment.mark;
+				count++;
 			}
 		});
-		h.mark = (nbCom==0)? undefined: total/nbCom;
+		
+		hill.mark = (count == 0) ? undefined : total/count;
 	});
 }
+
 
 function unflat(from){
 	var to = {};
@@ -105,7 +122,7 @@ exports.viewAll = function(req, res) {
 
 	Hill.find({}, function(err,docs){
 		if (!err) {
-			calculateAverage(docs);
+			updateAverages(docs);
 			res.render('hills/view', { hills: Object.values(docs) });
 		}
 	});
@@ -115,7 +132,7 @@ exports.viewHill = function(req, res) {
 	
 	Hill.findOne({name: req.params.hillName}, function(err,doc){
 		if (!err) {
-			calculateAverage([ doc ]);
+			updateAverages([ doc ]);
 			res.render('hills/view', { hills: [ doc ] });
 		}
 	});
@@ -153,27 +170,23 @@ exports.newComment = function(req, res) {
 	var from = unflat(req.body);
 	var comment = new Comment();
 	
-	Object.each(from, function(val, key){
+	Object.each(from, function(val, key) {
 		comment[key] = val;
 	});
 	
 	comment.tags = [];
 	
-	if (from.rocailleuse) comment.tags.push("rocailleuse");
-	if (from.poudreuse) comment.tags.push("poudreuse");
-	if (from.artificielle) comment.tags.push("artificielle");
-	if (from.dure) comment.tags.push("dure");
-	if (from.soupe) comment.tags.push("soupe");
+	for (var tag in POSSIBLE_TAGS)
+		if (POSSIBLE_TAGS.hasOwnProperty(tag))
+			if (from[tag])
+				comment.tags.push(tag);
 	
-	console.log(comment.tags);
-	
-	if (comment.donotmark) {
+	if (comment.donotmark)
 		comment['mark'] = null;
-	}
 	
 	comment.date = new Date();
 	comment.expires = new Date();
-	comment.expires.setTime(comment.date.getTime() + 60000); // expires in 1min
+	comment.expires.setTime(comment.date.getTime() + COMMENT_TIMEOUT); // expires in 1min
 	
 	if (req.user) {
 		comment.who = req.user.firstName + " " + req.user.lastName;
