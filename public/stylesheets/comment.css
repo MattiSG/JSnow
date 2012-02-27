@@ -1,0 +1,24 @@
+.comment
+{
+	border: 3px solid #888;
+	border-radius: 1em;
+	padding: 1em;
+}
+
+.comment h4 {
+	margin: 0;
+}
+
+.comment .content {
+	color: #444;
+}
+
+.comment q:before {
+	content: '“';
+}
+
+.comment q:after {
+	content: '” — 'attr(cite);
+	display: block;
+	font-style: italic;
+}

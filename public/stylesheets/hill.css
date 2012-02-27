@@ -1,0 +1,69 @@
+/*** HILL LAYOUT ***/
+
+.hill {
+	width: 22em;
+	padding: 1em;
+	float: left;
+}
+
+.hill:hover {
+	background-color: rgba(107, 255, 198, 0.15);
+}
+
+.hill h2 {
+	float: left;
+	margin: 0;
+}
+
+.hill .date {
+	font-size: 80%;
+	float: right;
+}
+
+.hill h3 {
+	clear: both;
+}
+
+.hillHeader {
+	height: 2em;
+}
+
+/*** HILL INFO ***/
+
+.mark
+{
+	font-weight: bold;
+}
+
+.snow_type
+{
+	font-weight: bold;
+}
+
+
+/*** RUNS ***/
+
+ol
+{
+	list-style-type: asterisks;
+}
+
+.green
+{
+	color: green;
+}
+
+.blue
+{
+	color: blue;
+}
+
+.red
+{
+	color: red;
+}
+
+.black
+{
+	color: #000;
+}

@@ -58,7 +58,7 @@ function updateAverages(hills) {
 			}
 		});
 		
-		hill.mark = (count == 0) ? undefined : total/count;
+		hill.mark = (count == 0) ? undefined : (total / count).toFixed(1);
 	});
 }
 
@@ -200,8 +200,9 @@ exports.newComment = function(req, res) {
 	comment.expires = new Date();
 	comment.expires.setTime(comment.date.getTime() + COMMENT_TIMEOUT);
 	
-	if (req.user)
-		comment.author = req.user.firstName + " " + req.user.lastName;
+	comment.author = req.user
+					 ? req.user.firstName + " " + req.user.lastName
+					 : 'Anonyme';
 	
 	Hill.findOne({name: req.params.hillName}, function(err, doc) {
 		var newCommentList = doc.comments;
