@@ -25,22 +25,22 @@
 	<span class="mark"><<= hill.mark ? "Note moyenne : " + hill.mark : "Peu de skieurs" >></span>
 	
 	<dl>
-		<dt>Hauteur de neige (haut/bas)</dt>
-		<dd><<= hill.snowCover.top >> / <<= hill.snowCover.bottom >></dd>
-		<dt class="lifts">Remonte-pistes</dt>
-		<dd><meter min="0" max="<<= hill.lifts.total >>" value="<<= hill.lifts.open >>"></meter><<= hill.lifts.open >> / <<= hill.lifts.total >></dd>
+		<dt>Hauteur de neige</dt>
+		<dd class="cover"><<= hill.snowCover.top >> m en haut / <<= hill.snowCover.bottom >> m en bas</dd>
+		<dt>Remonte-pistes</dt>
+		<dd class="lifts"><meter min="0" max="<<= hill.lifts.total >>" value="<<= hill.lifts.open >>"></meter><<= hill.lifts.open >> / <<= hill.lifts.total >></dd>
 	</dl>
 	
-	<h3>Pistes ouvertes</h3>
-	<ol class="runs">
+	<h3 class="runs">Pistes ouvertes</h3>
+	<ol>
 		<li class="green"><meter min="0" max="<<= hill.runs.green.total >>" value="<<= hill.runs.green.open >>"></meter><<= hill.runs.green.open >> / <<= hill.runs.green.total >></li>
 		<li class="blue"><meter min="0" max="<<= hill.runs.blue.total >>" value="<<= hill.runs.blue.open >>"></meter><<= hill.runs.blue.open >> / <<= hill.runs.blue.total >></li>
 		<li class="red"><meter min="0" max="<<= hill.runs.red.total >>" value="<<= hill.runs.red.open >>"></meter><<= hill.runs.red.open >> / <<= hill.runs.red.total >></li>
 		<li class="black"><meter min="0" max="<<= hill.runs.black.total >>" value="<<= hill.runs.black.open >>"></meter><<= hill.runs.black.open >> / <<= hill.runs.black.total >></li>
 	</ol>
 	
-	<h3>Ce qu'ils en disent</h3>
-	<div class="comments">
+	<h3 class="comments">Ce qu'ils en disent</h3>
+	<div>
 		<a class="add" href="/hills/<<= hill.name >>/comment">Ajouter un commentaire</a>
 		<<-
 			partial('comments/_comment', hill.comments)

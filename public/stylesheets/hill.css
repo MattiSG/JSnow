@@ -30,6 +30,44 @@
 
 /*** HILL INFO ***/
 
+.hill dt {
+	display: none;
+}
+
+.hill dd {
+	margin-left: 0;
+}
+
+.lifts:before, .cover:before, .runs:before, .comments:before {
+	background-clip: content-box;
+	background-size: 100%;
+	width: 20px;
+	height: 24px;
+	position: relative;
+	top: .4em;
+	display: inline-block;
+	content: ' ';
+	background-repeat: no-repeat;
+	margin-right: .5em;
+}
+
+.lifts:before {
+	background-image: url('../img/lift.svg');
+}
+
+.cover:before {
+	background-image: url('../img/flake.svg');
+}
+
+.runs:before {
+	background-image: url('../img/skiing.svg');
+}
+
+.comments:before {
+	background-image: url('../img/bubbles.svg');
+	top: .6em;
+}
+
 .mark
 {
 	font-weight: bold;
@@ -40,6 +78,9 @@
 	font-weight: bold;
 }
 
+meter {
+	margin: 0 1em;
+}
 
 /*** RUNS ***/
 
