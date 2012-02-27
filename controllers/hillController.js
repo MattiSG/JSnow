@@ -63,8 +63,7 @@ function updateAverages(hills) {
 	});
 }
 
-
-function unflat(from) {
+function unflatten(from) {
 	var to = {};
 	var elem = "", lastElem = null, before = null;
 	Object.each(from, function(val, key){
@@ -89,7 +88,7 @@ function unflat(from) {
 
 exports.update = function(req, res) {
 	
-	var newHillValues = unflat(req.body);
+	var newHillValues = unflatten(req.body);
 	newHillValues.name = req.params.hillName;
 	
 	// we don't want to lose total values
@@ -161,7 +160,7 @@ exports.newHill = function(req, res) {
 }
 
 exports.create = function(req, res) {
-	var from = unflat(req.body);
+	var from = unflatten(req.body);
 	var hill = new Hill();
 	
 	Object.each(from, function(val, key){
@@ -185,7 +184,7 @@ exports.newCommentForm = function(req, res) {
 }
 
 exports.newComment = function(req, res) {
-	var from = unflat(req.body);
+	var from = unflatten(req.body);
 	var comment = new Comment();
 	
 	Object.each(from, function(val, key) {
