@@ -55,3 +55,14 @@ Authors
 
 - Jérémy Gabriele
 - [Matti Schneider-Ghibaudo](http://mattischneider.fr)
+
+Credits
+-------
+
+- Web framework: [Express](http://expressjs.com)
+- Templating engine: [EJS](http://embeddedjs.com/)
+- Database: [MongoDB](http://www.mongodb.org)
+- ODM (Object-Document Mapper, i.e. Mongo-JS translator): [Mongoose](http://mongoosejs.com/)
+- Helpers: [MooTools](http://mootools.net)
+- Realtime client-server communication: [socket.io](http://socket.io/)
+- Images: [TheNounProject.com](http://thenounproject.com/)
