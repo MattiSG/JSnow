@@ -9,6 +9,7 @@ header {
 	position: fixed;
 	width: 100%;
 	margin: 0;
+	top: 0;
 	box-sizing: content-box;
 	background-color: #d3fff0;
 	
@@ -81,4 +82,30 @@ a:hover
 	list-style-type: none;
 	padding: 1em;
 	width: 40%;
+}
+
+
+/******** MOBILE *********/
+
+@media screen and (max-width: 640px) {
+	header, footer {
+		position: static;
+		margin: 0;
+		width: auto;
+		box-shadow: none;
+		padding-left: 0;
+	}
+	
+	header h1 {
+		margin: 0;
+		padding: .2em;
+	}
+	
+	header * {
+		display: block;
+	}
+	
+	#login {
+		padding-right: 0;
+	}
 }

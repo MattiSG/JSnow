@@ -67,3 +67,11 @@ ol
 {
 	color: #000;
 }
+
+
+/*** MOBILE ***/
+@media screen and (max-width: 640px) {
+	.hill {
+		border-top: 2px solid black;
+	}
+}
