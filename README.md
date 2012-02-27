@@ -14,7 +14,7 @@ How to use
 
 ### Dependencies ###
 
-You will need:
+You will need to install (if you don't already have them):
 
 - [Node.js](http://nodejs.org) v0.6.9+
 - [MongoDB](http://www.mongodb.org/downloads) v2.0+
@@ -26,7 +26,8 @@ If you just downloaded MongoDB for this application, you must have a folder with
 Then:
 
     git clone git://github.com/MattiSG/JSnow.git	# or simply download a zipball on the "download" tab
-    sudo ./jsnow # sudo is needed to start the Mongo database dæmon
+    cd JSnow
+    sudo ./jsnow	# sudo is needed to start the Mongo database dæmon
     
 …and you can simply hit `localhost:3000` on your favorite browser.
 
