@@ -42,6 +42,14 @@ If you already have MongoDB in your `PATH`, then do something along the lines of
 
 …and you can simply hit `localhost:3000` on your favorite browser.
 
+Browser compatibility
+---------------------
+
+- Best seen on [Chrome](http://www.google.com/chrome/).
+- Any recent WebKit browser will be good.
+- Firefox offers a somewhat degraded experience.
+- Not tested on IE.
+
 Default users
 -------------
 
