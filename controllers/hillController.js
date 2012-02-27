@@ -8,7 +8,7 @@ var UserController = require('./userController');
 
 var nbAccess = 0;
 
-var COMMENT_TIMEOUT = 60 * 1000,	// how long (in ms) before a comment is considered old (a candidate for pruning)
+var COMMENT_TIMEOUT = 3 * 60 * 1000,	// how long (in ms) before a comment is considered old (a candidate for pruning)
 	COMMENT_PRUNING_FREQUENCY = 2, // we'll clean old comments every nth request
 	POSSIBLE_TAGS = ['rocailleuse', 'poudreuse', 'artificielle', 'dure', 'soupe'];
 	
