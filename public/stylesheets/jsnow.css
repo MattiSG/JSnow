@@ -1,9 +1,33 @@
+/** Global layout for the JSnow interface.
+*
+*@author	Matti Schneider-Ghibaudo
+*/
+
+/*** GLOBAL ***/
+
 body {
 	font: 14px "Lucida Grande", "Lucida Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
 	padding: 0;
 	margin: 0;
 	background-color: #f4f3ff;
 }
+
+a {
+  color: #0099ff;
+}
+
+a:hover {
+  color: #0037ff;
+}
+
+
+#main {
+	padding: 4em 1em;
+	position: relative;
+	z-index: 0;
+}
+
+/*** HEADER ***/
 
 header {
 	position: fixed;
@@ -27,12 +51,6 @@ header h1 {
 	float: left;
 }
 
-#main {
-	padding: 4em 1em;
-	position: relative;
-	z-index: 0;
-}
-
 #login {
 	font-size: 90%;
 	float: right;
@@ -44,26 +62,14 @@ header h1 {
 	display: block;
 }
 
-a
-{
-  color: #0099ff;
-}
-
-a:hover
-{
-  color: #0037ff;
-}
-
 /*** FORMS ***/
 
-[required]
-{
+[required] {
 	border-color: #88a;
 	-webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
 }
 
-:invalid
-{
+:invalid {
 	border-color: #e88;
 	-webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
 }
@@ -90,20 +96,18 @@ a:hover
 	top: -5em;
 }
 
-.info
-{
+.info {
 	border: 1px dashed red;
 	list-style-type: none;
 }
 
-.error
-{
+.error {
 	border: 1px dashed red;
 	list-style-type: none;
 }
 
 
-/******** MOBILE *********/
+/*** MOBILE ***/
 
 @media screen and (max-width: 640px) {
 	header, footer {
