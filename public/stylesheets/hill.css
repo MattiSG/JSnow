@@ -1,3 +1,8 @@
+/** View for a JSnow hill.
+*
+*@author	Matti Schneider-Ghibaudo
+*/
+
 /*** HILL LAYOUT ***/
 
 .hill {
@@ -69,13 +74,11 @@
 	top: .6em;
 }
 
-.mark
-{
+.mark {
 	font-weight: bold;
 }
 
-.snow_type
-{
+.snow_type {
 	font-weight: bold;
 }
 
@@ -85,28 +88,23 @@ meter {
 
 /*** RUNS ***/
 
-ol
-{
+ol {
 	list-style-type: asterisks;
 }
 
-.green
-{
+.green {
 	color: green;
 }
 
-.blue
-{
+.blue {
 	color: blue;
 }
 
-.red
-{
+.red {
 	color: red;
 }
 
-.black
-{
+.black {
 	color: #000;
 }
 

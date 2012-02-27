@@ -1,6 +1,9 @@
-var hillsController = require('./controllers/hillController');
-var usersController = require('./controllers/userController');
-var sockets = require('./controllers/sockets.js');
+/** These routes are defined with EasyRoutes syntax.
+*
+*/
+
+var hillsController = require('./controllers/hillController'),
+	usersController = require('./controllers/userController');
 
 module.exports = {
 	'/': hillsController.viewAll,

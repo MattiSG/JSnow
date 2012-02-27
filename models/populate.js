@@ -1,3 +1,8 @@
+/*
+ * This file is just here to populate the mongo database for a clean presentation purpose.
+ *@author	Jeremy Gabriele
+*/
+
 
 var mongoose = require('mongoose'),
 		Hill = mongoose.model('Hill'),

@@ -1,5 +1,9 @@
-.comment
-{
+/** View for a JSnow comment.
+*
+*@author	Matti Schneider-Ghibaudo
+*/
+
+.comment {
 	border: 3px solid #888;
 	padding: 1em;
 }

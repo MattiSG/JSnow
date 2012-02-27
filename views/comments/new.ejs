@@ -1,4 +1,3 @@
-
 <h2>Comment est <<= hill.name>> aujourd'hui ?</h2>
 <form action="/hills/<<= hill.name>>/comment" method="post">
 	<h3>Commentaire</h3>
@@ -6,7 +5,7 @@
 	
 	<h3><label for="mark">Note</label></h3>
 	<select name="mark" id="mark">
-		<option value="4">Génial !</option>
+		<option value="4">Génial !</option> <!-- TODO: these should be generated from config + lang files -->
 		<option value="3">Bien</option>
 		<option value="2" selected="selected">Standard</option>
 		<option value="1">Bof</option>

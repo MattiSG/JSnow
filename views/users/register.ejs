@@ -1,32 +1,26 @@
-<< if (!everyauth.loggedIn) {>>
-<h2>S'enregistrer</h2>
-	<< if  ('undefined' !== typeof errors && errors.length) {>>
-	<ul>
-	  << for (var i=0; i<errors.length; i++) {>>
-	  <li class="error"><<= errors[i] >></li>
-	  <<}>>
-	</ul>
+<< if (! everyauth.loggedIn) { >>
+	<h2>S'enregistrer</h2>
+	<< if (typeof errors !== 'undefined' && errors.length) { >>
+		<ul class="error">
+			<< for (var i = 0; i < errors.length; i++) {>>
+				<li><<= errors[i] >></li>
+			<< } >>
+		</ul>
 	<<}>>
-</p>
-  <form action="/users/register" method="post">
-    <label for="<<= everyauth.password.loginFormFieldName >>">Email</label>
-    <input type="text" name="<<= everyauth.password.loginFormFieldName >>" />
-    <br />
-    <label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label>
-    <input type="password" name="<<= everyauth.password.passwordFormFieldName >>" />
-    <br />
-    <label for="firstName">Prénom</label>
-    <input type="text" name="firstName" />
-    <br />
-    <label for="lastName">Nom</label>
-    <input type="text" name="lastName" />
-    <br />
-    <input type="submit" value="Créer un compte" />
-  </form>
-  
-<a href='/'>Retour à l'accueil</a>
-</p>
-<< } // else find a way to redirect >>
+	<form action="/users/register" method="post">
+		<dl>
+			<dt><label for="<<= everyauth.password.loginFormFieldName >>">Email</label></dt>
+			<dd><input type="text" name="<<= everyauth.password.loginFormFieldName >>" id="<<= everyauth.password.loginFormFieldName >>" /></dd>
+			<dt><label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label></dt>
+			<dd><input type="password" name="<<= everyauth.password.passwordFormFieldName >>" id="<<= everyauth.password.passwordFormFieldName >>" /></dd>
+			<dt><label for="firstName">Prénom</label></dt>
+			<dd><input type="text" name="firstName" id="firstName" /></dd>
+			<dt><label for="lastName">Nom</label></dt>
+			<dd><input type="text" name="lastName" id="lastName" /></dd>
+		</dl>
+		
+		<input type="submit" value="Créer un compte" />
+	</form>
+<< } >>
 
-<footer>
-</footer>
+<p><a href='/'>Retour à l'accueil</a></p>

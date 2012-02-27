@@ -45,8 +45,8 @@
 		<script src="/socket.io/socket.io.js"></script>
 		<script>
 			(function() {
-				var socket = io.connect('/');
-				socket.on('hillUpdate', function(hillName) {
+				var socket = io.connect('/');	// connect to the server
+				socket.on('hillUpdate', function(hillName) {	// listen to events
 					new Request.HTML({
 						url: '/hills/raw/' + hillName,	// request raw view of the updated hill
 						update: hillName,	// we'll update the element with this ID
@@ -62,7 +62,7 @@
 				var flash = $('messages');
 				if (flash) {
 					flash.highlight();
-					flash.addClass.delay(2000, flash, 'hidden');
+					flash.addClass.delay(2000, flash, 'hidden');	// animation is handled by CSS
 				}
 			});
 		</script>

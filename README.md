@@ -9,13 +9,6 @@ Objectives
 - Inform skiers about snow conditions at various ski hills.
 - Allow skiers to contribute real-time feedback about the said conditions.
 
-
-Deployment
-----------
-
-- Run, and "npm install" what needed at every fail.
-- Install [mongodb](http://www.mongodb.org/downloads) and run it. Do not forget to create all needed repositories by hand. Some help about [config](http://www.mongodb.org/display/DOCS/File+Based+Configuration).
-
 How to use
 ----------
 
@@ -33,7 +26,7 @@ If you just downloaded MongoDB for this application, you must have a folder with
 Then:
 
     git clone git://github.com/MattiSG/JSnow.git	# or simply download a zipball on the "download" tab
-    ./jsnow
+    sudo ./jsnow # sudo is needed to start the Mongo database dæmon
     
 …and you can simply hit `localhost:3000` on your favorite browser.
 
@@ -49,8 +42,35 @@ If you already have MongoDB in your `PATH`, then do something along the lines of
 
 …and you can simply hit `localhost:3000` on your favorite browser.
 
+Browser compatibility
+---------------------
+
+- Best seen on [Chrome](http://www.google.com/chrome/).
+- Any recent WebKit browser will be good.
+- Firefox offers a somewhat degraded experience.
+- Not tested on IE.
+
+Default users
+-------------
+
+The “skimaster” (admin account) uses the following identification:
+
+- email: `admin@jsnow.fr`
+- password: `admin`
+
 Authors
 -------
 
 - Jérémy Gabriele
 - [Matti Schneider-Ghibaudo](http://mattischneider.fr)
+
+Credits
+-------
+
+- Web framework: [Express](http://expressjs.com)
+- Templating engine: [EJS](http://embeddedjs.com/)
+- Database: [MongoDB](http://www.mongodb.org)
+- ODM (Object-Document Mapper, i.e. Mongo-JS translator): [Mongoose](http://mongoosejs.com/)
+- Helpers: [MooTools](http://mootools.net)
+- Realtime client-server communication: [socket.io](http://socket.io/)
+- Images: [TheNounProject.com](http://thenounproject.com/)

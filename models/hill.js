@@ -1,13 +1,19 @@
+/** hill model.
+*
+*@author	Jeremy Gabriele
+*/
+
 var mongoose     = require('mongoose'),
     Schema       = mongoose.Schema,
     ObjectId = Schema.ObjectId;
+
 
 var CommentSchema = require('./comment').schema;
 
 // Hill schema
 var HillSchema = new Schema({
   name: String,
-  comments: [CommentSchema],
+  comments: [CommentSchema], // this is a list of embedded documents
   runs: {
   	green: {
   		open: {type: Number, min: 0},

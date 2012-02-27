@@ -1,12 +1,19 @@
+/** user model
+*@author	Jeremy Gabriele
+*/
+
 var mongoose      = require('mongoose'),
     Schema        = mongoose.Schema,
     mongooseAuth  = require('mongoose-auth');
 
+// We define a schema for user.
+// seems confusing as mongodb is schemaless but mongoose ODM require it.
 var UserSchema = new Schema({
   name:String,
   lastname:String
 });
 
+// user schema is augmented by mongoose-auth
 UserSchema.plugin(mongooseAuth, {
     everymodule: {
       everyauth: {
@@ -24,6 +31,7 @@ UserSchema.plugin(mongooseAuth, {
       	skimaster:String
      	},
 
+			// define all the routes and associated views about login/register
       everyauth: {
             getLoginPath: '/users/login'
           , postLoginPath: '/users/login'
@@ -37,4 +45,6 @@ UserSchema.plugin(mongooseAuth, {
     }
 });
 
+// register the model schema so we can acess it and create new users with mongoose.model('User').
+// /!\ The collection will not be created until the first value is inserted !
 mongoose.model('User', UserSchema);
