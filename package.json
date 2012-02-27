@@ -1,13 +1,13 @@
 {
 	"name": "JSnow",
-	"version": "0.0.1",
+	"version": "0.2.0",
 	"private": true,
 	"dependencies": {
 		"express": "2.5.5",
-		"mongoose": "latest",
-		"mongoose-auth": "latest",
-		"everyauth": "latest",
-		"express-messages" : "latest",
-		"socket.io": "latest"
+		"mongoose": "2.5.9",
+		"mongoose-auth": "0.0.12",
+		"everyauth": "0.2.30",
+		"express-messages" : "0.0.2",
+		"socket.io": "0.9.0"
 	}
 }
