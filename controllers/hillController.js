@@ -188,13 +188,10 @@ exports.newComment = function(req, res) {
 	
 	comment.tags = [];
 	
-	for (var tag in POSSIBLE_TAGS)
-		if (POSSIBLE_TAGS.hasOwnProperty(tag))
-			if (from[tag])
-				comment.tags.push(tag);
-	
-	if (comment.donotmark)
-		comment['mark'] = null;
+	for (var tagKey in POSSIBLE_TAGS)
+		if (POSSIBLE_TAGS.hasOwnProperty(tagKey))
+			if (from[POSSIBLE_TAGS[tagKey]])
+				comment.tags.push(POSSIBLE_TAGS[tagKey]);
 	
 	comment.date = new Date();
 	comment.expires = new Date();
