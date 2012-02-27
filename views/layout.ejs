@@ -33,9 +33,8 @@
 			</div>
 		</header>
 		
-		<<- messages() >>
-		
 		<div id="main" role="main">
+			<<- messages() >>
 			<<- body >>
 		</div>
 		
@@ -58,6 +57,14 @@
 					}).send();
 				});
 			})();
+			
+			window.addEvent('load', function() {
+				var flash = $('messages');
+				if (flash) {
+					flash.highlight();
+					flash.addClass.delay(2000, flash, 'hidden');
+				}
+			});
 		</script>
 	</body>
 </html>

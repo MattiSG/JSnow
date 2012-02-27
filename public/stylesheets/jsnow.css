@@ -13,6 +13,8 @@ header {
 	box-sizing: content-box;
 	background-color: #d3fff0;
 	
+	z-index: 1;
+	
 	-webkit-box-shadow: 0 0 8px #000;
 	-moz-box-shadow: 0 0 8px #000;
 	-o-box-shadow: 0 0 8px #000;
@@ -27,6 +29,8 @@ header h1 {
 
 #main {
 	padding: 4em 1em;
+	position: relative;
+	z-index: 0;
 }
 
 #login {
@@ -66,22 +70,36 @@ a:hover
 
 /*** FLASH MESSAGES ***/
 
+#messages {
+	position: absolute;
+	width: 300px;
+	top: 3em;
+	padding: .5em;
+	
+	background-color: #EEE;
+	font-weight: bold;
+	border-bottom-right-radius: 1em;
+	border-bottom-left-radius: 1em;
+	
+	-webkit-transition: top 1s linear;
+	-moz-transition: top 1s linear;
+	-o-transition: top 1s linear;
+}
+
+#messages.hidden {
+	top: -5em;
+}
+
 .info
 {
 	border: 1px dashed red;
-	color: blue;
 	list-style-type: none;
-	padding: 1em;
-	width: 40%;
 }
 
 .error
 {
 	border: 1px dashed red;
-	color: red;
 	list-style-type: none;
-	padding: 1em;
-	width: 40%;
 }
 
 
