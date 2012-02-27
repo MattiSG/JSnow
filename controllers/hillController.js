@@ -95,23 +95,28 @@ exports.update = function(req, res) {
 	Hill.findOne({name: newHillValues.name}, function(err, doc){
 		if (err) throw err;
 		var runs = doc.runs;
-		var colors = ['green','blue','red','black']; // bugfix, cannot use Object.each(runs).
+		var colors = ['green', 'blue', 'red', 'black'];
 		colors.each(function(color){
-			if (newHillValues.runs[color].open != null) {
+			if (newHillValues.runs[color].open)
 				newHillValues.runs[color].total = runs[color].total;
-			}
 		});
-		if (newHillValues.lifts.open != null)　newHillValues.lifts.total = doc.lifts.total;
+		
+		if (newHillValues.lifts.open)
+			newHillValues.lifts.total = doc.lifts.total;
+			
 		newHillValues.lastUpdate = new Date();
+		
 		Hill.update({name: newHillValues.name}, newHillValues, null, function(err) { 
 			if (!err) {
 				req.flash('info', newHillValues.name+' a bien été mis à jour');
 				res.redirect('/hills');
+				
+				sockets.pushUpdate(req.params.hillName);
 			} else {
 				req.flash('error', err);
 			}
 		});
-	});	
+	});
 }
 
 exports.updateForm = function(req, res) {
