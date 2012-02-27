@@ -48,7 +48,10 @@
 				socket.on('hillUpdate', function(hillName) {
 					new Request.HTML({
 						url: '/hills/raw/' + hillName,	// request raw view of the updated hill
-						update: hillName	// we'll update the element with this ID
+						update: hillName,	// we'll update the element with this ID
+						onSuccess: function() {
+							$(hillName).highlight();
+						}
 					}).send();
 				});
 			})();
