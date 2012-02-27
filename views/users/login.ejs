@@ -1,26 +1,23 @@
-<< if (!everyauth.loggedIn) { >>
-<h2>Se connecter</h2>
-	<< if  ('undefined' !== typeof errors && errors.length) {>>
-	<ul>
-	  << for (var i=0; i<errors.length; i++) {>>
-	  <li class="error"><<= errors[i] >></li>
-	  <<}>>
-	</ul>
+<< if (! everyauth.loggedIn) { >>
+	<h2>Se connecter</h2>
+	<< if (typeof errors !== 'undefined' && errors.length) { >>
+		<ul class="error">
+			<< for (var i = 0; i < errors.length; i++) {>>
+				<li><<= errors[i] >></li>
+			<< } >>
+		</ul>
 	<<}>>
-</p>
-  <form action="/users/login" method="post">
-    <label for="<<= everyauth.password.loginFormFieldName >>">Identifiant</label>
-    <input name="<<=everyauth.password.loginFormFieldName >>" type="text" />
-    <br />
-    <label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label>
-    <input name="<<= everyauth.password.passwordFormFieldName >>" type="password" />
-    <br />
-    <input type="submit" value="Se connecter" />
-  </form>
-  
-<a href='/'>Retour à l'accueil</a>
-</p>
-<< } // else find a way to redirect >>
+	
+	<form action="/users/login" method="post">
+		<dl>
+			<dt><label for="<<= everyauth.password.loginFormFieldName >>">Identifiant</label></dt>
+			<dd><input name="<<=everyauth.password.loginFormFieldName >>" id="<<=everyauth.password.loginFormFieldName >>" type="text" /></dd>
+			<dt><label for="<<= everyauth.password.passwordFormFieldName >>">Mot de passe</label></dt>
+			<dd><input name="<<= everyauth.password.passwordFormFieldName >>" id="<<= everyauth.password.passwordFormFieldName >>" type="password" /></dd>
+		</dl>
+		
+		<input type="submit" value="Se connecter" />
+	</form>
+<< } >>
 
-<footer>
-</footer>
+<p><a href='/'>Retour à l'accueil</a></p>
