@@ -31,8 +31,8 @@ UserSchema.plugin(mongooseAuth, {
           , getRegisterPath: '/users/register'
           , postRegisterPath: '/users/register'
           , registerView: 'users/register.ejs'
-          , loginSuccessRedirect: '/home'
-          , registerSuccessRedirect: '/home'
+          , loginSuccessRedirect: '/'
+          , registerSuccessRedirect: '/'
         }
     }
 });

@@ -3,9 +3,7 @@ var usersController = require('./controllers/userController');
 var sockets = require('./controllers/sockets.js');
 
 module.exports = {
-	'/': 'home',
-	
-	'/home': 'home',
+	'/': hillsController.viewAll,
 	
 	'/hills/new': {
 		get: [

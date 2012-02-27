@@ -7,20 +7,20 @@ var mongoose = require('mongoose'),
 module.exports = function(){
 	
 	var stations = [
+	// Isola
 		{
-			name: "Isola",
-			snowType: "Powder",
+			name: "Isola 2000",
 			comments: [
 				{
-					mark: 3.9,
+					mark: 3.5,
 					content: "La neige est géniale, c'est du surkiff au top la forme !",
-					author: "Brian",
+					author: "Brian O'marley",
 					tags: ['poudreuse']
 				},
 				{
-					mark: 2.7,
+					mark: 2.5,
 					content: "J'ai connu mieux en 1995, mais c'était chouette quand même.",
-					author: "Matti",
+					author: "Matti Tookoor",
 					tags: ['rocailleuse', 'artificielle']
 				}],
 			runs: {
@@ -51,9 +51,9 @@ module.exports = function(){
 			},
 			lastUpdate: new Date()
 		},
+		// Auron
 		{
 			name: "Auron",
-			snowType: "Powder",
 			comments: [
 				{
 					mark: 4.0,
@@ -64,7 +64,7 @@ module.exports = function(){
 				{
 					mark: 3.5,
 					content: "C'était mieux qu'Isola.",
-					author: "Jérémy",
+					author: "Jérémy Tookoor",
 					tags: ['rocailleuse', 'dure']
 				}],
 			runs: {
@@ -94,7 +94,45 @@ module.exports = function(){
 		    total: 25
 			},
 			lastUpdate: new Date()
-		}
+		},
+		//Valberg
+		{
+			name: "Valberg",
+			comments: [
+				{
+					mark: 0.5,
+					content: "C'est vraiment une station de ski ?",
+					author: "Maddi Shnaïda",
+					tags: ['rocailleuse', 'artificielle']
+				}],
+			runs: {
+				green: {
+					open: 2,
+					total: 2
+				},
+				blue: {
+					open: 3,
+					total: 4
+				},
+				red: {
+					open: 2,
+					total: 7
+				},
+				black: {
+					open: 1,
+					total: 1
+				}
+			},
+			snowCover: { // meter
+			  top: 0.5,
+			  bottom: 0.1
+			},
+			lifts: {
+		    open: 15,
+		    total: 20
+			},
+			lastUpdate: new Date()
+		},
 	
 	];
 	
