@@ -42,6 +42,14 @@ If you already have MongoDB in your `PATH`, then do something along the lines of
 
 …and you can simply hit `localhost:3000` on your favorite browser.
 
+Default users
+-------------
+
+The “skimaster” (admin account) uses the following identification:
+
+- email: `admin@jsnow.fr`
+- password: `admin`
+
 Authors
 -------
 
