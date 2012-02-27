@@ -1,24 +1,43 @@
 
-<h2>Ajouter un commentaire</h2>
-</p>
-  <form action="/hills/<<= hill.name>>/comment" method="post">
-    <textarea name="content"></textarea>
-    <br />
-    <label for="mark">Note</label>
-    <input type="number" step="0.5" min="0" max="4" value="0" name="mark" />
-    <br />
-    <label for="donotmark">Je ne veux pas donner de note</label>
-    <input type="checkbox" name="donotmark" />
-    <br />
-    <label>Type de neige : </label>
-    <input type="checkbox" name="rocailleuse">rocailleuse</input>
-    <input type="checkbox" name="poudreuse">poudreuse</input>
-    <input type="checkbox" name="artificielle">artificielle</input>
-    <input type="checkbox" name="dure">dure</input>
-    <input type="checkbox" name="soupe">soupe</input>
-    
-	<input type="submit" value="Ajouter" />
-  </form>
-  
-  <a href='/'>Retour à l'accueil</a>
-</p>
+<h2>Comment est <<= hill.name>> aujourd'hui ?</h2>
+<form action="/hills/<<= hill.name>>/comment" method="post">
+	<h3>Commentaire</h3>
+	<textarea name="content" spellcheck="true"></textarea>
+	
+	<h3><label for="mark">Note</label></h3>
+	<select name="mark" id="mark">
+		<option value="4">Génial !</option>
+		<option value="3">Bien</option>
+		<option value="2" selected="selected">Standard</option>
+		<option value="1">Bof</option>
+		<option value="0">Nul</option>
+	</select>
+
+	<h3>Type de neige</h3>
+	<ul>
+		<li>
+			<input type="checkbox" name="rocailleuse" id="rocailleuse"></input>
+			<label for="rocailleuse">rocailleuse</label>
+		</li>
+		<li>
+			<input type="checkbox" name="poudreuse" id="poudreuse"></input>
+			<label for="poudreuse">poudreuse</label>
+		</li>
+		<li>
+			<input type="checkbox" name="artificielle" id="artificielle"></input>
+			<label for="artificielle">artificielle</label>
+		</li>
+		<li>
+			<input type="checkbox" name="dure" id="dure"></input>
+			<label for="dure">dure</label>
+		</li>
+		<li>
+			<input type="checkbox" name="soupe" id="soupe"></input>
+			<label for="soupe">soupe</label>
+		</li>
+	</ul>
+	
+	<input type="submit" value="Envoyer" />
+</form>
+
+<p><a href='/'>Retour à l'accueil</a></p>

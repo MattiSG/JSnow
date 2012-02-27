@@ -1,0 +1,42 @@
+.comment
+{
+	border: 3px solid #888;
+	padding: 1em;
+}
+
+.comment:first-child {
+	-webkit-border-top-left-radius: 1em;
+	-webkit-border-top-right-radius: 1em;
+	-moz-border-radius-topleft: 1em;
+	-moz-border-radius-topright: 1em;
+}
+
+.comment:last-child {
+	-webkit-border-bottom-left-radius: 1em;
+	-webkit-border-bottom-right-radius: 1em;
+	-moz-border-radius-bottomleft: 1em;
+	-moz-border-radius-bottomright: 1em;
+}
+
+.comment h4 {
+	margin: 0;
+}
+
+.comment .content {
+	color: #444;
+}
+
+.comment q:before {
+	content: '“';
+}
+
+.comment q:after {
+	content: '” — 'attr(cite);
+	display: block;
+	font-style: italic;
+}
+
+textarea {
+	width: 35em;
+	height: 8em;
+}

@@ -3,7 +3,11 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<link rel="stylesheet"  href="/stylesheets/style.css" />
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		
+		<link rel="stylesheet"  href="/stylesheets/jsnow.css" />
+		<link rel="stylesheet"  href="/stylesheets/hill.css" />
+		<link rel="stylesheet"  href="/stylesheets/comment.css" />
 	
 		<title>Where to go skiing today? — JSnow!</title>
 		<meta name="author" content="Matti Schneider-Ghibaudo" />
@@ -13,26 +17,28 @@
 	<body>
 		
 		<header>
-			<h1 id="banner">JSnow!</h1>
+			<h1 id="banner">JSn❄w!</h1>
+			
+			<div id="login">
+				<< if (everyauth.loggedIn) {>>
+					<<= user.firstName >> <<= user.lastName >>
+					<<if (everyauth.user.skimaster=='on') {>>
+						<a href="/hills/new">Ajouter une nouvelle station</a>
+					<<}>>
+					<a href='/logout'>Se déconnecter</a>
+				<<} else {>>
+					Vous n'êtes pas connecté… <a href='/users/login'>Connectez-vous</a>
+					<a href='/users/register'>Inscrivez-vous</a>
+				<<}>>			
+			</div>
 		</header>
 		
-		<<- messages() >>
-		
 		<div id="main" role="main">
+			<<- messages() >>
 			<<- body >>
 		</div>
 		
 		<footer>
-		  << if (everyauth.loggedIn) {>>
-		  <p>
-				Vous êtes connecté en tant que <<= user.firstName >> <<= user.lastName >>.
-				<a href='/logout'>Se déconnecter</a>.
-			</p>
-		  <<} else {>>
-			<p>
-				Vous n'êtes pas connecté... <a href='/users/login'>Connectez-vous</a> ou <a href='/users/register'>Inscrivez-vous</a> !
-			</p>
-			<<}>>
 		</footer>
 
 		<script src="/js/mootools-core-1.4.4.js"></script>
@@ -43,10 +49,22 @@
 				socket.on('hillUpdate', function(hillName) {
 					new Request.HTML({
 						url: '/hills/raw/' + hillName,	// request raw view of the updated hill
-						update: hillName	// we'll update the element with this ID
+						update: hillName,	// we'll update the element with this ID
+						filter: '.hill > *',	// avoid russian-dolling
+						onSuccess: function() {
+							$(hillName).highlight();
+						}
 					}).send();
 				});
 			})();
+			
+			window.addEvent('load', function() {
+				var flash = $('messages');
+				if (flash) {
+					flash.highlight();
+					flash.addClass.delay(2000, flash, 'hidden');
+				}
+			});
 		</script>
 	</body>
 </html>

@@ -1,0 +1,118 @@
+/*** HILL LAYOUT ***/
+
+.hill {
+	width: 22em;
+	padding: 1em;
+	float: left;
+}
+
+.hill:hover {
+	background-color: rgba(107, 255, 198, 0.15);
+}
+
+.hill h2 {
+	float: left;
+	margin: 0;
+}
+
+.hill .date {
+	font-size: 80%;
+	float: right;
+}
+
+.hill h3 {
+	clear: both;
+}
+
+.hillHeader {
+	height: 2em;
+}
+
+/*** HILL INFO ***/
+
+.hill dt {
+	display: none;
+}
+
+.hill dd {
+	margin-left: 0;
+}
+
+.lifts:before, .cover:before, .runs:before, .comments:before {
+	background-clip: content-box;
+	background-size: 100%;
+	width: 20px;
+	height: 24px;
+	position: relative;
+	top: .4em;
+	display: inline-block;
+	content: ' ';
+	background-repeat: no-repeat;
+	margin-right: .5em;
+}
+
+.lifts:before {
+	background-image: url('../img/lift.svg');
+}
+
+.cover:before {
+	background-image: url('../img/flake.svg');
+}
+
+.runs:before {
+	background-image: url('../img/skiing.svg');
+}
+
+.comments:before {
+	background-image: url('../img/bubbles.svg');
+	top: .6em;
+}
+
+.mark
+{
+	font-weight: bold;
+}
+
+.snow_type
+{
+	font-weight: bold;
+}
+
+meter {
+	margin: 0 1em;
+}
+
+/*** RUNS ***/
+
+ol
+{
+	list-style-type: asterisks;
+}
+
+.green
+{
+	color: green;
+}
+
+.blue
+{
+	color: blue;
+}
+
+.red
+{
+	color: red;
+}
+
+.black
+{
+	color: #000;
+}
+
+
+/*** MOBILE ***/
+@media screen and (max-width: 640px) {
+	.hill {
+		border-top: 2px solid black;
+	}
+}

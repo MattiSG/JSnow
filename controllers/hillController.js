@@ -8,7 +8,7 @@ var UserController = require('./userController');
 
 var nbAccess = 0;
 
-var COMMENT_TIMEOUT = 60 * 1000,	// how long (in ms) before a comment is considered old (a candidate for pruning)
+var COMMENT_TIMEOUT = 3 * 60 * 1000,	// how long (in ms) before a comment is considered old (a candidate for pruning)
 	COMMENT_PRUNING_FREQUENCY = 2, // we'll clean old comments every nth request
 	POSSIBLE_TAGS = ['rocailleuse', 'poudreuse', 'artificielle', 'dure', 'soupe'];
 	
@@ -58,7 +58,7 @@ function updateAverages(hills) {
 			}
 		});
 		
-		hill.mark = (count == 0) ? undefined : total/count;
+		hill.mark = (count == 0) ? undefined : (total / count).toFixed(1);
 	});
 }
 
@@ -95,23 +95,28 @@ exports.update = function(req, res) {
 	Hill.findOne({name: newHillValues.name}, function(err, doc){
 		if (err) throw err;
 		var runs = doc.runs;
-		var colors = ['green','blue','red','black']; // bugfix, cannot use Object.each(runs).
+		var colors = ['green', 'blue', 'red', 'black'];
 		colors.each(function(color){
-			if (newHillValues.runs[color].open != null) {
+			if (newHillValues.runs[color].open)
 				newHillValues.runs[color].total = runs[color].total;
-			}
 		});
-		if (newHillValues.lifts.open != null)　newHillValues.lifts.total = doc.lifts.total;
+		
+		if (newHillValues.lifts.open)
+			newHillValues.lifts.total = doc.lifts.total;
+			
 		newHillValues.lastUpdate = new Date();
+		
 		Hill.update({name: newHillValues.name}, newHillValues, null, function(err) { 
 			if (!err) {
 				req.flash('info', newHillValues.name+' a bien été mis à jour');
 				res.redirect('/hills');
+				
+				sockets.pushUpdate(req.params.hillName);
 			} else {
 				req.flash('error', err);
 			}
 		});
-	});	
+	});
 }
 
 exports.updateForm = function(req, res) {
@@ -188,34 +193,37 @@ exports.newComment = function(req, res) {
 	
 	comment.tags = [];
 	
-	for (var tag in POSSIBLE_TAGS)
-		if (POSSIBLE_TAGS.hasOwnProperty(tag))
-			if (from[tag])
-				comment.tags.push(tag);
-	
-	if (comment.donotmark)
-		comment['mark'] = null;
+	for (var tagKey in POSSIBLE_TAGS)
+		if (POSSIBLE_TAGS.hasOwnProperty(tagKey))
+			if (from[POSSIBLE_TAGS[tagKey]])
+				comment.tags.push(POSSIBLE_TAGS[tagKey]);
 	
 	comment.date = new Date();
 	comment.expires = new Date();
 	comment.expires.setTime(comment.date.getTime() + COMMENT_TIMEOUT);
 	
-	if (req.user)
-		comment.author = req.user.firstName + " " + req.user.lastName;
+	comment.author = req.user
+					 ? req.user.firstName + " " + req.user.lastName
+					 : 'Anonyme';
 	
 	Hill.findOne({name: req.params.hillName}, function(err, doc) {
 		var newCommentList = doc.comments;
 		newCommentList.push(comment);
-		Hill.update({name: doc.name}, {comments: newCommentList}, null, function(err){
-			if (err) {
-				req.flash('error', err);
-				res.redirect('/hills/'+req.params.hillName+'/comment');
+		Hill.update(
+			{ name: doc.name },
+			{
+				comments: newCommentList,
+				lastUpdate: new Date()
+			}, null, function(err) {
+				if (!err) {
+					req.flash('info', 'Votre commentaire a bien été ajouté');
+					res.redirect('/hills');
+				} else {
+					req.flash('error', err);
+					res.redirect('/hills/'+req.params.hillName+'/comment');
+				}
 			}
-			if (!err) {
-				req.flash('info', 'Votre commentaire a bien été ajouté');
-				res.redirect('/hills');
-			}
-		});
+		);
 	});
 	
 	sockets.pushUpdate(req.params.hillName);

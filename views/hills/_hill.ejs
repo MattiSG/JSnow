@@ -1,43 +1,49 @@
 <article class="hill" id="<<= hill.name >>">
-	<h2 class="hill_name"><<= hill.name >></h2>
-	<<if (everyauth.loggedIn && (everyauth.user.skimaster=='on')) {>>
-	<a href="/hills/update/<<= hill.name >>">Éditer</a>
-	<<}>>
-	<p>
-		Note moyenne : <span class="mark"><<= hill.mark >></span>
-		Dernière mise à jour le
-		<<
-			var d = hill.lastUpdate;
-			var year = ""+d.getFullYear();
-			var month = (d.getMonth()<10)? "0"+d.getMonth(): ""+d.getMonth();
-			var day = (d.getDate()<10)? "0"+d.getDate(): ""+d.getDate();
-			var hour = (d.getHours()<10)? "0"+d.getHours(): ""+d.getHours();
-			var minute = (d.getMinutes()<10)? "0"+d.getMinutes(): ""+d.getMinutes();
-			var second = (d.getSeconds()<10)? "0"+d.getSeconds(): ""+d.getSeconds();
-		>>
-		<<= day >>/<<= month >>/<<= year >> at
-		<<= hour >>:<<= minute >>:<<= second >>
-	</p>
+	<div class="hillHeader">
+		<h2>
+			<<= hill.name >>
+			<<if (everyauth.loggedIn && (everyauth.user.skimaster=='on')) {>>
+				<a href="/hills/update/<<= hill.name >>">✎</a>
+			<<}>>
+		</h2>
+		<span class="date">
+			Mise à jour<br/>
+			<<
+				var d = hill.lastUpdate;
+				var year = ""+d.getFullYear();
+				var month = (d.getMonth()<10)? "0"+d.getMonth(): ""+d.getMonth();
+				var day = (d.getDate()<10)? "0"+d.getDate(): ""+d.getDate();
+				var hour = (d.getHours()<10)? "0"+d.getHours(): ""+d.getHours();
+				var minute = (d.getMinutes()<10)? "0"+d.getMinutes(): ""+d.getMinutes();
+				var second = (d.getSeconds()<10)? "0"+d.getSeconds(): ""+d.getSeconds();
+			>>
+			le <<= day >> à
+			<<= hour >>:<<= minute >>:<<= second >>
+		</span>
+	</div>
 	
-	<h3 class="info_title">Informations générales</h3>
-	<p>
-		Hauteur de neige (haut/bas) : <<= hill.snowCover.top >> / <<= hill.snowCover.bottom >>
-	</p>
-	<p>
-		Remonte-piste (ouverts/total) : <<= hill.lifts.open >> / <<= hill.lifts.total >>
-	</p>
+	<span class="mark"><<= hill.mark ? "Note moyenne : " + hill.mark : "Peu de skieurs" >></span>
 	
-	<h3 class="info_title">Pistes ouvertes</h3>
-	<ol class="runs">
-		<li class="green"><<= hill.runs.green.open >> / <<= hill.runs.green.total >></li>
-		<li class="blue"><<= hill.runs.blue.open >> / <<= hill.runs.blue.total >></li>
-		<li class="red"><<= hill.runs.red.open >> / <<= hill.runs.red.total >></li>
-		<li class="black"><<= hill.runs.black.open >> / <<= hill.runs.black.total >></li>
+	<dl>
+		<dt>Hauteur de neige</dt>
+		<dd class="cover"><<= hill.snowCover.top >> m en haut / <<= hill.snowCover.bottom >> m en bas</dd>
+		<dt>Remonte-pistes</dt>
+		<dd class="lifts"><meter min="0" max="<<= hill.lifts.total >>" value="<<= hill.lifts.open >>"></meter><<= hill.lifts.open >> / <<= hill.lifts.total >></dd>
+	</dl>
+	
+	<h3 class="runs">Pistes ouvertes</h3>
+	<ol>
+		<li class="green"><meter min="0" max="<<= hill.runs.green.total >>" value="<<= hill.runs.green.open >>"></meter><<= hill.runs.green.open >> / <<= hill.runs.green.total >></li>
+		<li class="blue"><meter min="0" max="<<= hill.runs.blue.total >>" value="<<= hill.runs.blue.open >>"></meter><<= hill.runs.blue.open >> / <<= hill.runs.blue.total >></li>
+		<li class="red"><meter min="0" max="<<= hill.runs.red.total >>" value="<<= hill.runs.red.open >>"></meter><<= hill.runs.red.open >> / <<= hill.runs.red.total >></li>
+		<li class="black"><meter min="0" max="<<= hill.runs.black.total >>" value="<<= hill.runs.black.open >>"></meter><<= hill.runs.black.open >> / <<= hill.runs.black.total >></li>
 	</ol>
 	
-	<h3 class="info_title">Ce qu'ils en disent :</h3>
-	<<-
-		partial('comments/_comment', hill.comments)
-	>>
-	<a href="/hills/<<= hill.name >>/comment">Ajouter un commentaire</a>
+	<h3 class="comments">Ce qu'ils en disent</h3>
+	<a class="add" href="/hills/<<= hill.name >>/comment">Ajouter un commentaire</a>
+	<div>
+		<<-
+			partial('comments/_comment', hill.comments)
+		>>
+	</div>
 </article>
