@@ -49,6 +49,7 @@
 					new Request.HTML({
 						url: '/hills/raw/' + hillName,	// request raw view of the updated hill
 						update: hillName,	// we'll update the element with this ID
+						filter: '.hill > *',	// avoid russian-dolling
 						onSuccess: function() {
 							$(hillName).highlight();
 						}
